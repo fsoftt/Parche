@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:Parche.App.Localization"
+             xmlns:vm="clr-namespace:Parche.App.ViewModels"
+             xmlns:m="clr-namespace:Parche.Core.Models;assembly=Parche.Core"
+             xmlns:controls="clr-namespace:Parche.App.Controls"
+             x:Class="Parche.App.Views.MyListPage"
+             x:DataType="vm:MyListViewModel">
+  <Grid RowDefinitions="Auto,*" Padding="{OnIdiom Default='16,40,16,0', TV='48,36,48,0'}" RowSpacing="16">
+    <Label Text="{l:Translate MyList_Title}" Style="{StaticResource Display}" />
+    <CollectionView Grid.Row="1" ItemsSource="{Binding Items}" SelectionMode="None">
+      <!-- Descargas encima de la lista (se desplazan con ella); también aloja el aviso de lista vacía -->
+      <CollectionView.Header>
+        <VerticalStackLayout Spacing="8" Margin="0,0,0,10">
+          <VerticalStackLayout IsVisible="{Binding HasDownloads}" Spacing="8">
+            <Label Text="{l:Translate Downloads_Title}" Style="{StaticResource SectionTitle}" Margin="0,4,0,0" />
+            <VerticalStackLayout Spacing="10" BindableLayout.ItemsSource="{Binding Downloads}">
+              <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="vm:DownloadRow">
+                  <VerticalStackLayout Spacing="6">
+                    <controls:TvCard Padding="8"
+                                     Command="{Binding ActivateDownloadCommand, Source={RelativeSource AncestorType={x:Type vm:MyListViewModel}}, x:DataType=vm:MyListViewModel}"
+                                     CommandParameter="{Binding .}">
+                      <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Border WidthRequest="{OnIdiom Default=112, TV=160}" HeightRequest="{OnIdiom Default=63, TV=90}"
+                                StrokeThickness="0" StrokeShape="RoundRectangle 6" BackgroundColor="{StaticResource Surface2}">
+                          <Image Source="{Binding Image}" Aspect="AspectFill" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                          <Label Text="{Binding Title}" FontAttributes="Bold" MaxLines="1" LineBreakMode="TailTruncation" />
+                          <Label Text="{Binding Subtitle}" Style="{StaticResource Muted}" MaxLines="1" LineBreakMode="TailTruncation"
+                                 IsVisible="{Binding HasSubtitle}" />
+                          <Label Text="{Binding Status}" Style="{StaticResource Muted}" MaxLines="2" LineBreakMode="TailTruncation" />
+                          <ProgressBar Progress="{Binding Fraction}" ProgressColor="{StaticResource Accent}"
+                                       IsVisible="{Binding ShowProgress}" Margin="0,4,0,0" />
+                        </VerticalStackLayout>
+                      </Grid>
+                    </controls:TvCard>
+                    <HorizontalStackLayout Spacing="8">
+                      <Button Text="{Binding ToggleText}" IsVisible="{Binding CanToggle}" Style="{StaticResource GlassButton}"
+                              Command="{Binding ToggleDownloadCommand, Source={RelativeSource AncestorType={x:Type vm:MyListViewModel}}, x:DataType=vm:MyListViewModel}"
+                              CommandParameter="{Binding .}" />
+                      <Button Text="{l:Translate Downloads_Delete}" Style="{StaticResource GlassButton}"
+                              Command="{Binding DeleteDownloadCommand, Source={RelativeSource AncestorType={x:Type vm:MyListViewModel}}, x:DataType=vm:MyListViewModel}"
+                              CommandParameter="{Binding .}" />
+                    </HorizontalStackLayout>
+                  </VerticalStackLayout>
+                </DataTemplate>
+              </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <Label Text="{l:Translate MyList_Title}" Style="{StaticResource SectionTitle}" Margin="0,10,0,0"
+                   IsVisible="{Binding HasListItems}" />
+          </VerticalStackLayout>
+          <Label Text="{l:Translate MyList_Empty}" Style="{StaticResource Muted}" Margin="0,8"
+                 IsVisible="{Binding IsEmpty}" />
+        </VerticalStackLayout>
+      </CollectionView.Header>
+      <CollectionView.ItemsLayout>
+        <GridItemsLayout x:Name="Grid" Orientation="Vertical" Span="{OnIdiom Default=3, TV=6}"
+                         VerticalItemSpacing="{OnIdiom Default=10, TV=20}" HorizontalItemSpacing="{OnIdiom Default=8, TV=20}" />
+      </CollectionView.ItemsLayout>
+      <CollectionView.ItemTemplate>
+        <DataTemplate x:DataType="m:MediaItem">
+          <controls:TvCard HeightRequest="{OnIdiom Default=158, TV=230}" Margin="{OnIdiom Default=0, TV=6}"
+                           Command="{Binding OpenCommand, Source={RelativeSource AncestorType={x:Type vm:MyListViewModel}}, x:DataType=vm:MyListViewModel}"
+                           CommandParameter="{Binding .}">
+            <Grid>
+              <Label Text="{Binding Title}" Style="{StaticResource Muted}" Margin="8" MaxLines="4"
+                     VerticalOptions="Center" HorizontalTextAlignment="Center" />
+              <Image Source="{Binding Poster}" Aspect="AspectFill" />
+            </Grid>
+          </controls:TvCard>
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+    </CollectionView>
+  </Grid>
+</ContentPage>

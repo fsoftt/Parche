@@ -1,0 +1,41 @@
+{
+ "streams": [
+  {
+   "name": "Addon\n1080p",
+   "title": "Inception.2010.1080p.BluRay.x264.SPANISH-LATINO\n👤 120 💾 2.1 GB ⚙️ SiteA\nMulti Audio / 🇪🇸 / 🇲🇽 / 🇬🇧",
+   "infoHash": "ABABABABABABABABABABABABABABABABABABABAB",
+   "fileIdx": 0,
+   "behaviorHints": {
+    "bingeGroup": "addon|1080p|BluRay",
+    "filename": "Inception.2010.1080p.BluRay.x264.SPANISH-LATINO.mkv"
+   },
+   "sources": [
+    "tracker:udp://hint-a.test:1337/announce",
+    "tracker:udp://hint-b.test:80/announce",
+    "dht:abababababababababababababababababababab"
+   ]
+  },
+  {
+   "name": "Addon\n4k",
+   "title": "Inception 2010 2160p UHD BluRay HDR ENG\n👤 45 💾 18.4 GB ⚙️ SiteB\n🇬🇧",
+   "infoHash": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "fileIdx": 1,
+   "sources": [
+    "tracker:udp://hint-a.test:1337/announce"
+   ]
+  },
+  {
+   "name": "Addon\n720p",
+   "title": "Origen (2010) 720p Castellano\n👤 8 💾 700 MB ⚙️ SiteC",
+   "infoHash": "efefefefefefefefefefefefefefefefefefefef",
+   "sources": [
+    "dht:efefefefefefefefefefefefefefefefefefefef"
+   ]
+  },
+  {
+   "name": "Addon\n480p",
+   "title": "Inception.DVDRip.XviD\n👤 2 💾 1.4 GB ⚙️ SiteD",
+   "infoHash": "1212121212121212121212121212121212121212"
+  }
+ ]
+}

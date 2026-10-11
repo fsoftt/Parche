@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+      - name: Test core
+        run: dotnet test tests/Parche.Core.Tests/Parche.Core.Tests.csproj
+
+  windows-app:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+      - name: Install MAUI Windows workload
+        run: dotnet workload install maui-windows
+      - name: Build Windows app
+        run: dotnet build src/Parche.App/Parche.App.csproj -f net10.0-windows10.0.19041.0 -c Release

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:Parche.App.Localization"
+             xmlns:vm="clr-namespace:Parche.App.ViewModels"
+             xmlns:m="clr-namespace:Parche.Core.Models;assembly=Parche.Core"
+             xmlns:controls="clr-namespace:Parche.App.Controls"
+             x:Class="Parche.App.Views.DetailPage"
+             x:DataType="vm:DetailViewModel">
+
+  <Grid>
+    <ScrollView>
+      <VerticalStackLayout Spacing="14" Padding="0,0,0,40">
+
+        <!-- Imagen principal con degradado -->
+        <Grid x:Name="Hero" HeightRequest="{OnIdiom Default=300, TV=380}">
+          <Image Source="{Binding Backdrop}" Aspect="AspectFill" />
+          <BoxView Background="{StaticResource HeroFade}" />
+          <BoxView Background="{StaticResource HeroSideFade}" IsVisible="{Binding IsTv}" />
+          <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                             VerticalOptions="Center" HorizontalOptions="Center" />
+        </Grid>
+
+        <VerticalStackLayout Spacing="12" Padding="{OnIdiom Default='16,0', TV='48,0'}"
+                             Margin="{OnIdiom Default='0,-70,0,0', TV='0,-150,0,0'}"
+                             MaximumWidthRequest="{OnIdiom Default=9999, TV=900}"
+                             HorizontalOptions="{OnIdiom Default=Fill, TV=Start}">
+          <Label Text="{Binding Title}" Style="{StaticResource Display}" />
+          <Label Text="{Binding Meta}" Style="{StaticResource Muted}" TextColor="#46D369"
+                 IsVisible="{Binding Meta, Converter={StaticResource HasValue}}" />
+
+          <!-- Acciones: el botón de reproducción es el primero en recibir foco en TV -->
+          <FlexLayout Wrap="Wrap" JustifyContent="Start">
+            <Button x:Name="PlayButton" Text="{l:Translate Common_Play}" Style="{StaticResource PrimaryButton}"
+                    Command="{Binding PlayCommand}" IsEnabled="{Binding Detail, Converter={StaticResource HasValue}}" Margin="0,0,10,8" />
+            <Button Style="{StaticResource GlassButton}" Command="{Binding DownloadMovieCommand}"
+                    Text="{Binding DownloadText}" ImageSource="{Binding DownloadIcon}" Margin="0,0,10,8"
+                    IsVisible="{Binding ShowMovieDownload}"
+                    IsEnabled="{Binding Detail, Converter={StaticResource HasValue}}" />
+            <Button Style="{StaticResource GlassButton}" Command="{Binding ToggleMyListCommand}"
+                    Text="{Binding MyListText}" Margin="0,0,10,8"
+                    ImageSource="{Binding InMyList, Converter={StaticResource BoolImage}, ConverterParameter='check.png|add.png'}" />
+            <Button Text="{l:Translate Detail_Trailer}" Style="{StaticResource GlassButton}" Command="{Binding OpenTrailerCommand}"
+                    IsVisible="{Binding HasTrailer}" Margin="0,0,0,8" />
+          </FlexLayout>
+
+          <!-- Sin addons de fuentes: invitación a agregar uno (no es un error) -->
+          <VerticalStackLayout IsVisible="{Binding NoAddons}" Spacing="8">
+            <Label Text="{l:Translate Streams_NoAddons}" FontAttributes="Bold" />
+            <Button Text="{l:Translate Streams_GoToSettings}" Style="{StaticResource GlassButton}" Command="{Binding OpenSettingsCommand}" HorizontalOptions="Start" />
+          </VerticalStackLayout>
+
+          <Label Text="{Binding Detail.Description}" LineHeight="1.25" MaxLines="{OnIdiom Default=8, TV=4}"
+                 IsVisible="{Binding Detail.Description, Converter={StaticResource HasValue}}" />
+          <Label Text="{Binding CastLine}" Style="{StaticResource Muted}" MaxLines="2"
+                 IsVisible="{Binding CastLine, Converter={StaticResource HasValue}}" />
+
+          <!-- Error -->
+          <VerticalStackLayout IsVisible="{Binding HasError}" Spacing="8">
+            <Label Text="{Binding Error}" TextColor="{StaticResource Accent}" />
+            <Button Text="{l:Translate Common_Retry}" Command="{Binding RetryCommand}" HorizontalOptions="Start" />
+          </VerticalStackLayout>
+        </VerticalStackLayout>
+
+        <!-- Temporadas y episodios -->
+        <VerticalStackLayout IsVisible="{Binding IsSeries}" Spacing="10">
+          <Label Text="{l:Translate Detail_Episodes}" Style="{StaticResource SectionTitle}" />
+          <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+            <HorizontalStackLayout Spacing="8" Padding="{OnIdiom Default='16,0', TV='48,0'}"
+                                   BindableLayout.ItemsSource="{Binding SeasonChips}">
+              <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="vm:ChipOption">
+                  <controls:Chip Text="{Binding Label}" IsSelected="{Binding IsSelected}"
+                                 Command="{Binding SelectSeasonCommand, Source={RelativeSource AncestorType={x:Type vm:DetailViewModel}}, x:DataType=vm:DetailViewModel}"
+                                 CommandParameter="{Binding .}" />
+                </DataTemplate>
+              </BindableLayout.ItemTemplate>
+            </HorizontalStackLayout>
+          </ScrollView>
+          <ActivityIndicator IsRunning="{Binding IsLoadingEpisodes}" IsVisible="{Binding IsLoadingEpisodes}" HorizontalOptions="Start" Margin="16,0" />
+
+          <VerticalStackLayout Spacing="8" Padding="{OnIdiom Default='16,0', TV='48,0'}"
+                               BindableLayout.ItemsSource="{Binding Episodes}">
+            <BindableLayout.ItemTemplate>
+              <DataTemplate x:DataType="vm:EpisodeRow">
+                <!-- La tarjeta reproduce; el botón de al lado descarga (ambos enfocables con el D-pad) -->
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                  <controls:TvCard FocusScale="1.02" Padding="10"
+                                   Command="{Binding PlayEpisodeCommand, Source={RelativeSource AncestorType={x:Type vm:DetailViewModel}}, x:DataType=vm:DetailViewModel}"
+                                   CommandParameter="{Binding .}">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                      <Border WidthRequest="{OnIdiom Default=112, TV=160}" HeightRequest="{OnIdiom Default=63, TV=90}"
+                              StrokeThickness="0" StrokeShape="RoundRectangle 6" BackgroundColor="{StaticResource Surface2}">
+                        <Image Source="{Binding Thumbnail}" Aspect="AspectFill" />
+                      </Border>
+                      <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                        <Label Text="{Binding Label}" FontAttributes="Bold" MaxLines="2" />
+                        <Label Text="{Binding Overview}" Style="{StaticResource Muted}" MaxLines="2" LineBreakMode="TailTruncation"
+                               IsVisible="{Binding Overview, Converter={StaticResource HasValue}}" />
+                      </VerticalStackLayout>
+                      <Image Grid.Column="2" Source="play.png" WidthRequest="24" HeightRequest="24" Opacity="0.8" />
+                    </Grid>
+                  </controls:TvCard>
+                  <Button Grid.Column="1" Style="{StaticResource GlassButton}" VerticalOptions="Center"
+                          ImageSource="{Binding DownloadIcon}" Text="{Binding DownloadBadge}" ContentLayout="Left,4"
+                          Padding="12,0" MinimumWidthRequest="52"
+                          IsVisible="{Binding HasAddons, Source={RelativeSource AncestorType={x:Type vm:DetailViewModel}}, x:DataType=vm:DetailViewModel}"
+                          Command="{Binding DownloadEpisodeCommand, Source={RelativeSource AncestorType={x:Type vm:DetailViewModel}}, x:DataType=vm:DetailViewModel}"
+                          CommandParameter="{Binding .}" />
+                </Grid>
+              </DataTemplate>
+            </BindableLayout.ItemTemplate>
+          </VerticalStackLayout>
+        </VerticalStackLayout>
+      </VerticalStackLayout>
+    </ScrollView>
+
+    <!-- Volver (en TV se usa el botón Atrás del control remoto) -->
+    <Button IsVisible="{Binding IsTv, Converter={StaticResource Not}}" ImageSource="back.png"
+            Style="{StaticResource GlassButton}" CornerRadius="20" Padding="8" WidthRequest="40" HeightRequest="40"
+            HorizontalOptions="Start" VerticalOptions="Start" Margin="12,36,0,0" Clicked="OnBack" />
+  </Grid>
+</ContentPage>

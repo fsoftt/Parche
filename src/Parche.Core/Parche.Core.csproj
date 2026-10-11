@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Núcleo independiente de la UI: catálogo (TMDB/Cinemeta), addons Stremio (streams y subtítulos), ranking y ajustes. -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Parche.Core</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Parche.Core.Tests" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="Parche.App.TvShell"
+       FlyoutBehavior="Locked"
+       FlyoutWidth="230"
+       FlyoutBackgroundColor="{StaticResource Bg}">
+  <Shell.FlyoutHeader>
+    <Label Style="{StaticResource Brand}" Margin="28,36,0,28" />
+  </Shell.FlyoutHeader>
+
+  <!-- Elemento del menú lateral: resaltado al enfocarlo con el control remoto. -->
+  <Shell.ItemTemplate>
+    <DataTemplate x:DataType="BaseShellItem">
+      <Grid ColumnDefinitions="56,*" HeightRequest="56" Padding="12,0">
+        <VisualStateManager.VisualStateGroups>
+          <VisualStateGroupList>
+            <VisualStateGroup x:Name="CommonStates">
+              <VisualState x:Name="Normal" />
+              <VisualState x:Name="Selected">
+                <VisualState.Setters>
+                  <Setter Property="BackgroundColor" Value="{StaticResource Surface2}" />
+                </VisualState.Setters>
+              </VisualState>
+              <VisualState x:Name="Focused">
+                <VisualState.Setters>
+                  <Setter Property="BackgroundColor" Value="#33FFFFFF" />
+                </VisualState.Setters>
+              </VisualState>
+            </VisualStateGroup>
+          </VisualStateGroupList>
+        </VisualStateManager.VisualStateGroups>
+        <Image Source="{Binding FlyoutIcon}" HeightRequest="26" WidthRequest="26" />
+        <Label Grid.Column="1" Text="{Binding Title}" VerticalOptions="Center" FontSize="18" FontAttributes="Bold" />
+      </Grid>
+    </DataTemplate>
+  </Shell.ItemTemplate>
+</Shell>

@@ -1,0 +1,82 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Android celular + Android TV (mismo APK) y, al compilar en Windows, escritorio Windows (WinUI 3 sin empaquetar). -->
+    <TargetFrameworks>net10.0-android</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Parche.App</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <MauiVersion>10.0.110</MauiVersion>
+
+    <ApplicationTitle>Parche</ApplicationTitle>
+    <ApplicationId>com.fsoftt.parche</ApplicationId>
+    <ApplicationDisplayVersion>0.1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+
+    <SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-android'))">26.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
+
+    <!-- Toda compilación Android (local y CI) se firma con la keystore de depuración del repo, para que un APK de
+         una máquina se instale encima del de otra. Sin ella cada runner genera una clave al azar y Android rechaza
+         la actualización. Solo para instalar a mano (sideload); se puede publicar. -->
+    <AndroidKeyStore Condition="$(TargetFramework.Contains('-android'))">True</AndroidKeyStore>
+    <AndroidSigningKeyStore Condition="$(TargetFramework.Contains('-android'))">debug.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyAlias Condition="$(TargetFramework.Contains('-android'))">androiddebugkey</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass Condition="$(TargetFramework.Contains('-android'))">android</AndroidSigningKeyPass>
+    <AndroidSigningStorePass Condition="$(TargetFramework.Contains('-android'))">android</AndroidSigningStorePass>
+  </PropertyGroup>
+
+  <!-- Windows: exe suelto (sin MSIX) y con el runtime de Windows App SDK incluido, para abrirlo con doble clic. -->
+  <PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
+    <WindowsPackageType>None</WindowsPackageType>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">win-x64</RuntimeIdentifier>
+    <!-- CommunityToolkit.Mvvm avisa que los [ObservableProperty] con campos no son AOT en WinUI; la app no usa AOT. -->
+    <NoWarn>$(NoWarn);MVVMTK0045</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#0B0B14" />
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#0B0B14" BaseSize="160,160" />
+    <MauiImage Include="Resources\Images\*.svg" BaseSize="24,24" />
+    <MauiFont Include="Resources\Fonts\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.10" />
+  </ItemGroup>
+
+  <!-- Android: ExoPlayer (Media3) permite enviar Referer/Origin que exigen muchos streams. -->
+  <ItemGroup Condition="$(TargetFramework.Contains('-android'))">
+    <PackageReference Include="Xamarin.AndroidX.Media3.ExoPlayer" Version="1.8.0" />
+    <PackageReference Include="Xamarin.AndroidX.Media3.ExoPlayer.Hls" Version="1.8.0" />
+    <PackageReference Include="Xamarin.AndroidX.Media3.ExoPlayer.Dash" Version="1.8.0" />
+    <PackageReference Include="Xamarin.AndroidX.Media3.DataSource" Version="1.8.0" />
+    <PackageReference Include="Xamarin.AndroidX.Media3.UI" Version="1.8.0" />
+  </ItemGroup>
+
+  <!-- Windows: LibVLCSharp.WinUI ya incluye LibVLCSharp (mismo LibVLCSharp.dll: no referenciar ambos). LibVLC reproduce MKV/MP4 con H.264/HEVC y varias pistas de audio (MediaPlayerElement no). -->
+  <ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
+    <PackageReference Include="LibVLCSharp.WinUI" Version="3.10.1" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.24" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Parche.Core\Parche.Core.csproj" />
+  </ItemGroup>
+
+
+  <!-- Fuentes externas: un archivo de props (fuera de este repo) puede agregar ProjectReferences y un Compile que implemente
+       MauiProgram.AddExternalSources. Se cambia la ruta con -p:ParchePluginsProps=... (o "none" para compilar sin plugins). -->
+  <PropertyGroup>
+    <ParchePluginsProps Condition="'$(ParchePluginsProps)' == ''">$(MSBuildThisFileDirectory)..\..\..\Parche.Plugins.props</ParchePluginsProps>
+  </PropertyGroup>
+  <Import Project="$(ParchePluginsProps)" Condition="Exists('$(ParchePluginsProps)')" />
+
+</Project>

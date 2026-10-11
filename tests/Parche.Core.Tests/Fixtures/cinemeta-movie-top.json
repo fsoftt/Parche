@@ -1,0 +1,292 @@
+{
+ "metas": [
+  {
+   "imdb_id": "tt6933238",
+   "cast": [
+    "Russell Crowe",
+    "Shailene Woodley",
+    "Jacob Tremblay"
+   ],
+   "country": "United States",
+   "description": "A Harvard student becomes the Unabomber after psychological experiments. Years later, an FBI agent's pursuit reveals how his past shaped his deadly campaign that killed 3 and injured 23 from 1978-1995.",
+   "director": [
+    "Janus Metz"
+   ],
+   "genre": [
+    "Biography",
+    "Crime",
+    "Drama"
+   ],
+   "imdbRating": "6.2",
+   "name": "Unabomber",
+   "released": "2026-09-25T00:00:00.000Z",
+   "slug": "movie/unabomber-6933238",
+   "type": "movie",
+   "year": "2026",
+   "moviedb_id": 1492640,
+   "background": "https://images.metahub.space/background/medium/tt6933238/img",
+   "logo": "https://images.metahub.space/logo/medium/tt6933238/img",
+   "poster": "https://images.metahub.space/poster/small/tt6933238/img",
+   "runtime": "101 min",
+   "trailers": [
+    {
+     "source": "B3tR6qQjbgI",
+     "type": "Trailer"
+    }
+   ],
+   "popularity": 2.3565233333333335,
+   "id": "tt6933238",
+   "genres": [
+    "Biography",
+    "Crime",
+    "Drama"
+   ],
+   "releaseInfo": "2026",
+   "behaviorHints": {
+    "defaultVideoId": "tt6933238",
+    "hasScheduledVideos": false
+   }
+  },
+  {
+   "imdb_id": "tt22526100",
+   "name": "The Love Hypothesis",
+   "type": "movie",
+   "cast": [
+    "Lili Reinhart",
+    "Tom Bateman",
+    "Rachel Marsh"
+   ],
+   "country": "United States",
+   "description": "After an impulsive kiss, two scientists end up in a fake relationship, testing their theories about love and each other.",
+   "director": [
+    "Claire Scanlon"
+   ],
+   "genre": [
+    "Comedy",
+    "Romance"
+   ],
+   "imdbRating": "",
+   "released": "2026-09-23T00:00:00.000Z",
+   "slug": "movie/the-love-hypothesis-22526100",
+   "year": "2026",
+   "moviedb_id": 1032863,
+   "poster": "https://images.metahub.space/poster/small/tt22526100/img",
+   "runtime": "112 min",
+   "trailers": [
+    {
+     "source": "xwdamnfS6IM",
+     "type": "Trailer"
+    }
+   ],
+   "background": "https://images.metahub.space/background/medium/tt22526100/img",
+   "logo": "https://images.metahub.space/logo/medium/tt22526100/img",
+   "popularity": 5.18651,
+   "id": "tt22526100",
+   "genres": [
+    "Comedy",
+    "Romance"
+   ],
+   "releaseInfo": "2026",
+   "behaviorHints": {
+    "defaultVideoId": "tt22526100",
+    "hasScheduledVideos": false
+   }
+  },
+  {
+   "imdb_id": "tt26657236",
+   "name": "Backrooms",
+   "type": "movie",
+   "cast": [
+    "Chiwetel Ejiofor",
+    "Renate Reinsve",
+    "Mark Duplass"
+   ],
+   "country": "United States, Canada",
+   "description": "After a therapist's patient disappears into a dimension beyond reality, she must venture into the unknown to save him.",
+   "director": [
+    "Kane Parsons"
+   ],
+   "genre": [
+    "Horror",
+    "Sci-Fi",
+    "Thriller"
+   ],
+   "imdbRating": "6.8",
+   "released": "2026-05-29T00:00:00.000Z",
+   "slug": "movie/backrooms-26657236",
+   "year": "2026",
+   "moviedb_id": 1083381,
+   "poster": "https://images.metahub.space/poster/small/tt26657236/img",
+   "runtime": "111 min",
+   "trailers": [
+    {
+     "source": "0HjdiohVOik",
+     "type": "Trailer"
+    }
+   ],
+   "background": "https://images.metahub.space/background/medium/tt26657236/img",
+   "logo": "https://images.metahub.space/logo/medium/tt26657236/img",
+   "popularity": 3.2958533333333335,
+   "id": "tt26657236",
+   "genres": [
+    "Horror",
+    "Sci-Fi",
+    "Thriller"
+   ],
+   "releaseInfo": "2026",
+   "behaviorHints": {
+    "defaultVideoId": "tt26657236",
+    "hasScheduledVideos": false
+   }
+  },
+  {
+   "imdb_id": "tt36983905",
+   "name": "The Uprising",
+   "type": "movie",
+   "cast": [
+    "Andrew Garfield",
+    "Jamie Bell",
+    "Stephen Dillane"
+   ],
+   "country": "United Kingdom, Germany, United States",
+   "description": "Based on the true story of the uprising that inspired the legend of Robin Hood, Andrew Garfield stars as the leader of a rebellion against the tyranny of King Richard II in a fight for justice.",
+   "director": [
+    "Paul Greengrass"
+   ],
+   "genre": [
+    "Action",
+    "Drama",
+    "History"
+   ],
+   "imdbRating": "",
+   "released": "2026-09-11T00:00:00.000Z",
+   "slug": "movie/the-uprising-36983905",
+   "year": "2026",
+   "moviedb_id": 977942,
+   "poster": "https://images.metahub.space/poster/small/tt36983905/img",
+   "runtime": "128 min",
+   "trailers": [
+    {
+     "source": "lyhCxZN4Ro8",
+     "type": "Trailer"
+    },
+    {
+     "source": "ZVkrhHebz1Q",
+     "type": "Trailer"
+    }
+   ],
+   "background": "https://images.metahub.space/background/medium/tt36983905/img",
+   "logo": "https://images.metahub.space/logo/medium/tt36983905/img",
+   "popularity": 5.705236666666667,
+   "id": "tt36983905",
+   "genres": [
+    "Action",
+    "Drama",
+    "History"
+   ],
+   "releaseInfo": "2026",
+   "behaviorHints": {
+    "defaultVideoId": "tt36983905",
+    "hasScheduledVideos": false
+   }
+  },
+  {
+   "imdb_id": "tt37287335",
+   "name": "Obsession",
+   "type": "movie",
+   "cast": [
+    "Michael Johnston",
+    "Inde Navarrette",
+    "Cooper Tomlinson"
+   ],
+   "country": "United States",
+   "description": "After breaking the mysterious \"One Wish Willow\" to win his crush's heart, a hopeless romantic finds himself getting exactly what he asked for but soon discovers that some desires come at a dark, sinister price.",
+   "director": [
+    "Curry Barker"
+   ],
+   "genre": [
+    "Horror",
+    "Thriller"
+   ],
+   "imdbRating": "7.8",
+   "released": "2026-05-15T00:00:00.000Z",
+   "slug": "movie/obsession-37287335",
+   "year": "2026",
+   "moviedb_id": 1339713,
+   "poster": "https://images.metahub.space/poster/small/tt37287335/img",
+   "runtime": "109 min",
+   "trailers": [
+    {
+     "source": "gMC8kkwbIQQ",
+     "type": "Trailer"
+    }
+   ],
+   "background": "https://images.metahub.space/background/medium/tt37287335/img",
+   "logo": "https://images.metahub.space/logo/medium/tt37287335/img",
+   "popularity": 5.591539999999999,
+   "id": "tt37287335",
+   "genres": [
+    "Horror",
+    "Thriller"
+   ],
+   "releaseInfo": "2026",
+   "behaviorHints": {
+    "defaultVideoId": "tt37287335",
+    "hasScheduledVideos": false
+   }
+  },
+  {
+   "imdb_id": "tt22084616",
+   "name": "Spider-Man: Brand New Day",
+   "type": "movie",
+   "cast": [
+    "Tom Holland",
+    "Zendaya",
+    "Mark Ruffalo"
+   ],
+   "country": "United States, Canada, United Kingdom, Germany",
+   "description": "A forgotten Peter Parker lives alone as a full-time Spider-Man until mounting pressure triggers a dangerous change and a powerful new enemy emerges.",
+   "director": [
+    "Destin Daniel Cretton"
+   ],
+   "genre": [
+    "Action",
+    "Adventure"
+   ],
+   "imdbRating": "8.0",
+   "released": "2026-07-31T00:00:00.000Z",
+   "slug": "movie/spider-man-brand-new-day-22084616",
+   "year": "2026",
+   "moviedb_id": 969681,
+   "poster": "https://images.metahub.space/poster/small/tt22084616/img",
+   "background": "https://images.metahub.space/background/medium/tt22084616/img",
+   "logo": "https://images.metahub.space/logo/medium/tt22084616/img",
+   "trailers": [
+    {
+     "source": "P3uI5sLosKU",
+     "type": "Trailer"
+    },
+    {
+     "source": "62bIsvRcPv0",
+     "type": "Trailer"
+    },
+    {
+     "source": "8TZMtslA3UY",
+     "type": "Trailer"
+    }
+   ],
+   "runtime": "145 min",
+   "popularity": 20.779806666666666,
+   "id": "tt22084616",
+   "genres": [
+    "Action",
+    "Adventure"
+   ],
+   "releaseInfo": "2026",
+   "behaviorHints": {
+    "defaultVideoId": "tt22084616",
+    "hasScheduledVideos": false
+   }
+  }
+ ]
+}

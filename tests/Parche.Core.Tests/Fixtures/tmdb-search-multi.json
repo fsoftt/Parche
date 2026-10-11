@@ -1,0 +1,32 @@
+{
+ "page": 1,
+ "results": [
+  {
+   "id": 1396,
+   "media_type": "tv",
+   "name": "Breaking Bad",
+   "first_air_date": "2008-01-20",
+   "poster_path": "/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
+   "backdrop_path": "/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg",
+   "overview": "Walter White...",
+   "vote_average": 8.9
+  },
+  {
+   "id": 17419,
+   "media_type": "person",
+   "name": "Bryan Cranston",
+   "profile_path": "/x.jpg"
+  },
+  {
+   "id": 559969,
+   "media_type": "movie",
+   "title": "El Camino: A Breaking Bad Movie",
+   "release_date": "2019-10-11",
+   "poster_path": "/ePXuKdXZuJx8hHMNr2yM4jY2L7Z.jpg",
+   "backdrop_path": null,
+   "overview": "",
+   "vote_average": 7.1
+  }
+ ],
+ "total_results": 3
+}

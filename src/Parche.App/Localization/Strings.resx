@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Tab_Home" xml:space="preserve"><value>Inicio</value></data>
+  <data name="Tab_Search" xml:space="preserve"><value>Buscar</value></data>
+  <data name="Tab_Categories" xml:space="preserve"><value>Categorías</value></data>
+  <data name="Tab_MyList" xml:space="preserve"><value>Mi lista</value></data>
+  <data name="Tab_Settings" xml:space="preserve"><value>Ajustes</value></data>
+  <data name="Common_Play" xml:space="preserve"><value>Reproducir</value></data>
+  <data name="Common_Retry" xml:space="preserve"><value>Reintentar</value></data>
+  <data name="Common_MyList" xml:space="preserve"><value>Mi lista</value></data>
+  <data name="Common_Info" xml:space="preserve"><value>Info</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>Cancelar</value></data>
+  <data name="Common_Close" xml:space="preserve"><value>Cerrar</value></data>
+  <data name="Common_All" xml:space="preserve"><value>Todos</value></data>
+  <data name="Common_Movies" xml:space="preserve"><value>Películas</value></data>
+  <data name="Common_Series" xml:space="preserve"><value>Series</value></data>
+  <data name="Type_Movie" xml:space="preserve"><value>Película</value></data>
+  <data name="Type_Series" xml:space="preserve"><value>Serie</value></data>
+  <data name="Home_NoContent" xml:space="preserve"><value>No se pudo cargar el catálogo. Revisa tu conexión a internet y los ajustes.</value></data>
+  <data name="Search_Placeholder" xml:space="preserve"><value>Busca películas, series…</value></data>
+  <data name="Search_NoResults" xml:space="preserve"><value>Sin resultados</value></data>
+  <data name="Search_Hint" xml:space="preserve"><value>Escribe al menos 2 letras para buscar películas y series.</value></data>
+  <data name="Categories_Title" xml:space="preserve"><value>Categorías</value></data>
+  <data name="Categories_Empty" xml:space="preserve"><value>No hay títulos en esta categoría.</value></data>
+  <data name="MyList_Title" xml:space="preserve"><value>Mi lista</value></data>
+  <data name="MyList_Empty" xml:space="preserve"><value>Aún no agregaste títulos. Usa «Mi lista» en el detalle de cualquier película o serie.</value></data>
+  <data name="Detail_InMyList" xml:space="preserve"><value>En mi lista</value></data>
+  <data name="Detail_Episodes" xml:space="preserve"><value>Episodios</value></data>
+  <data name="Detail_Trailer" xml:space="preserve"><value>Tráiler</value></data>
+  <data name="Detail_Cast" xml:space="preserve"><value>Reparto: {0}</value></data>
+  <data name="Detail_EpisodeLabel" xml:space="preserve"><value>T{0}:E{1} · {2}</value></data>
+  <data name="Streams_Title" xml:space="preserve"><value>Elegir fuente</value></data>
+  <data name="Streams_PlayBest" xml:space="preserve"><value>Reproducir el mejor</value></data>
+  <data name="Streams_Searching" xml:space="preserve"><value>Buscando fuentes…</value></data>
+  <data name="Streams_Empty" xml:space="preserve"><value>No se encontraron fuentes para este título.</value></data>
+  <data name="Streams_NoMatch" xml:space="preserve"><value>Ninguna fuente coincide con el idioma elegido.</value></data>
+  <data name="Streams_Error" xml:space="preserve"><value>No se pudieron cargar las fuentes.</value></data>
+  <data name="Streams_Hint" xml:space="preserve"><value>Si no aparecen fuentes, prueba con una red doméstica (sin VPN). Las fuentes poco disponibles pueden tardar o fallar.</value></data>
+  <data name="Streams_Cached" xml:space="preserve"><value>⚡ Instantánea</value></data>
+  <data name="Streams_Source" xml:space="preserve"><value>Fuente</value></data>
+  <data name="Streams_Origin" xml:space="preserve"><value>Origen: {0}</value></data>
+  <data name="Streams_AvailHigh" xml:space="preserve"><value>Muy disponible</value></data>
+  <data name="Streams_AvailMedium" xml:space="preserve"><value>Disponible</value></data>
+  <data name="Streams_AvailLow" xml:space="preserve"><value>Poco disponible: puede tardar</value></data>
+  <data name="Streams_NeedsPreparing" xml:space="preserve"><value>Se prepara al elegirla</value></data>
+  <data name="Streams_TagRemux" xml:space="preserve"><value>Blu-ray original</value></data>
+  <data name="Streams_TagCam" xml:space="preserve"><value>Grabada en cine</value></data>
+  <data name="Streams_TagAudio" xml:space="preserve"><value>Audio {0}</value></data>
+  <data name="Player_SourceUnavailable" xml:space="preserve"><value>Esta fuente no respondió a tiempo.</value></data>
+  <data name="Home_Continue" xml:space="preserve"><value>Continuar viendo</value></data>
+  <data name="Home_MinutesLeft" xml:space="preserve"><value>Quedan {0} min</value></data>
+  <data name="Player_TryingAnother" xml:space="preserve"><value>Esa fuente no respondió. Probando otra…</value></data>
+  <data name="Streams_LangEs" xml:space="preserve"><value>Castellano</value></data>
+  <data name="Streams_LangLatino" xml:space="preserve"><value>Latino</value></data>
+  <data name="Streams_LangEn" xml:space="preserve"><value>Inglés</value></data>
+  <data name="Streams_LangPt" xml:space="preserve"><value>Portugués</value></data>
+  <data name="Streams_LangMulti" xml:space="preserve"><value>Multi</value></data>
+  <data name="Player_Preparing" xml:space="preserve"><value>Preparando…</value></data>
+  <data name="Player_PhaseSearching" xml:space="preserve"><value>Conectando con la fuente…</value></data>
+  <data name="Player_PhaseMetadata" xml:space="preserve"><value>Preparando el video…</value></data>
+  <data name="Player_PhaseBuffering" xml:space="preserve"><value>Cargando búfer…</value></data>
+  <data name="Player_Speed" xml:space="preserve"><value>↓ {0:0.0} MB/s</value></data>
+  <data name="Player_Connections" xml:space="preserve"><value>{0} conexiones</value></data>
+  <data name="Player_BufferHint" xml:space="preserve"><value>La velocidad depende de qué tan disponible esté la fuente.</value></data>
+  <data name="Player_ResolveHint" xml:space="preserve"><value>Prueba con otra fuente: las que están muy disponibles cargan más rápido.</value></data>
+  <data name="Player_CannotPlay" xml:space="preserve"><value>No se pudo reproducir esta opción.</value></data>
+  <data name="Player_NativeFailed" xml:space="preserve"><value>El reproductor no pudo abrir este video.</value></data>
+  <data name="Player_OtherSource" xml:space="preserve"><value>Elegir otra fuente</value></data>
+  <data name="Player_Diagnostics" xml:space="preserve"><value>Diagnóstico</value></data>
+  <data name="Player_Copy" xml:space="preserve"><value>Copiar</value></data>
+  <data name="Lang_Title" xml:space="preserve"><value>Idioma</value></data>
+  <data name="Lang_System" xml:space="preserve"><value>Sistema</value></data>
+  <data name="Lang_Spanish" xml:space="preserve"><value>Español</value></data>
+  <data name="Lang_English" xml:space="preserve"><value>English</value></data>
+  <data name="Lang_Portuguese" xml:space="preserve"><value>Português</value></data>
+  <data name="Settings_Title" xml:space="preserve"><value>Ajustes</value></data>
+  <data name="Settings_Catalog" xml:space="preserve"><value>Catálogo</value></data>
+  <data name="Settings_Auto" xml:space="preserve"><value>Automático</value></data>
+  <data name="Settings_TmdbKey" xml:space="preserve"><value>Clave de TMDB</value></data>
+  <data name="Settings_TmdbHelp" xml:space="preserve"><value>Obtén una clave en themoviedb.org/settings/api. Sin clave se usa Cinemeta (solo en inglés).</value></data>
+  <data name="Settings_MaxQuality" xml:space="preserve"><value>Calidad máxima preferida</value></data>
+  <data name="Settings_SubLangs" xml:space="preserve"><value>Idiomas de subtítulos</value></data>
+  <data name="Settings_Save" xml:space="preserve"><value>Guardar</value></data>
+  <data name="Settings_Saved" xml:space="preserve"><value>Ajustes guardados.</value></data>
+  <data name="Downloads_Title" xml:space="preserve"><value>Descargas</value></data>
+  <data name="Downloads_Download" xml:space="preserve"><value>Descargar</value></data>
+  <data name="Downloads_Preparing" xml:space="preserve"><value>Preparando…</value></data>
+  <data name="Downloads_Queued" xml:space="preserve"><value>En cola</value></data>
+  <data name="Downloads_WaitingWifi" xml:space="preserve"><value>Esperando WiFi</value></data>
+  <data name="Downloads_WaitingNetwork" xml:space="preserve"><value>Esperando conexión</value></data>
+  <data name="Downloads_Searching" xml:space="preserve"><value>Buscando fuentes…</value></data>
+  <data name="Downloads_Downloading" xml:space="preserve"><value>Descargando</value></data>
+  <data name="Downloads_Paused" xml:space="preserve"><value>En pausa</value></data>
+  <data name="Downloads_Completed" xml:space="preserve"><value>Descargado · toca para ver</value></data>
+  <data name="Downloads_Done" xml:space="preserve"><value>Descargado</value></data>
+  <data name="Downloads_Failed" xml:space="preserve"><value>No se pudo descargar</value></data>
+  <data name="Downloads_Pause" xml:space="preserve"><value>Pausar</value></data>
+  <data name="Downloads_Resume" xml:space="preserve"><value>Reanudar</value></data>
+  <data name="Downloads_Delete" xml:space="preserve"><value>Eliminar</value></data>
+  <data name="Downloads_DeleteConfirm" xml:space="preserve"><value>¿Eliminar la descarga de «{0}»? Se borrará el archivo del dispositivo.</value></data>
+  <data name="Downloads_Empty" xml:space="preserve"><value>Aún no hay descargas. Usa «Descargar» en la ficha de una película o de un episodio.</value></data>
+  <data name="Downloads_NoSources" xml:space="preserve"><value>No hay fuentes que se puedan descargar para este título.</value></data>
+  <data name="Downloads_NoSpace" xml:space="preserve"><value>No hay espacio suficiente en el dispositivo.</value></data>
+  <data name="Downloads_SourceFailed" xml:space="preserve"><value>Ninguna fuente respondió. Inténtalo de nuevo más tarde.</value></data>
+  <data name="Downloads_WriteFailed" xml:space="preserve"><value>No se pudo guardar el archivo.</value></data>
+  <data name="Downloads_FileMissing" xml:space="preserve"><value>El archivo descargado ya no existe.</value></data>
+  <data name="Downloads_Of" xml:space="preserve"><value>{0} de {1}</value></data>
+  <data name="Settings_DownloadWifiOnly" xml:space="preserve"><value>Descargar solo con WiFi</value></data>
+  <data name="Settings_StreamLangs" xml:space="preserve"><value>Idiomas preferidos</value></data>
+  <data name="Settings_Addons" xml:space="preserve"><value>Addons de fuentes</value></data>
+  <data name="Settings_AddonsHelp" xml:space="preserve"><value>Direcciones de addons compatibles con el protocolo de addons de Stremio. Sin addons no hay fuentes que reproducir.</value></data>
+  <data name="Settings_AddAddon" xml:space="preserve"><value>Agregar</value></data>
+  <data name="Common_Remove" xml:space="preserve"><value>Quitar</value></data>
+  <data name="Settings_SubtitleAddons" xml:space="preserve"><value>Addons de subtítulos</value></data>
+  <data name="Settings_SubtitleAddonsHelp" xml:space="preserve"><value>Se consultan todos y se unen los resultados; si alguno falla, se omite.</value></data>
+  <data name="Streams_NoAddons" xml:space="preserve"><value>Agrega un addon de fuentes en Ajustes</value></data>
+  <data name="Streams_NoAddonsHelp" xml:space="preserve"><value>Parche reproduce contenido de los addons que tú agregues. Todavía no hay ninguno.</value></data>
+  <data name="Streams_GoToSettings" xml:space="preserve"><value>Ir a Ajustes</value></data>
+  <data name="About_Title" xml:space="preserve"><value>Acerca de</value></data>
+  <data name="About_Tmdb" xml:space="preserve"><value>Este producto usa la API de TMDB, pero no está avalado ni certificado por TMDB.</value></data>
+  <data name="About_Licenses" xml:space="preserve"><value>Código abierto (MIT). Reproducción con LibVLC (LGPL-2.1) en Windows y Media3/ExoPlayer (Apache-2.0) en Android.</value></data>
+</root>

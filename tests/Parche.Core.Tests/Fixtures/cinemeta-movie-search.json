@@ -1,0 +1,51 @@
+{
+ "metas": [
+  {
+   "imdb_id": "tt6933238",
+   "cast": [
+    "Russell Crowe",
+    "Shailene Woodley",
+    "Jacob Tremblay"
+   ],
+   "country": "United States",
+   "description": "A Harvard student becomes the Unabomber after psychological experiments. Years later, an FBI agent's pursuit reveals how his past shaped his deadly campaign that killed 3 and injured 23 from 1978-1995.",
+   "director": [
+    "Janus Metz"
+   ],
+   "genre": [
+    "Biography",
+    "Crime",
+    "Drama"
+   ],
+   "imdbRating": "6.2",
+   "name": "Unabomber",
+   "released": "2026-09-25T00:00:00.000Z",
+   "slug": "movie/unabomber-6933238",
+   "type": "movie",
+   "year": "2026",
+   "moviedb_id": 1492640,
+   "background": "https://images.metahub.space/background/medium/tt6933238/img",
+   "logo": "https://images.metahub.space/logo/medium/tt6933238/img",
+   "poster": "https://images.metahub.space/poster/small/tt6933238/img",
+   "runtime": "101 min",
+   "trailers": [
+    {
+     "source": "B3tR6qQjbgI",
+     "type": "Trailer"
+    }
+   ],
+   "popularity": 2.3565233333333335,
+   "id": "tt6933238",
+   "genres": [
+    "Biography",
+    "Crime",
+    "Drama"
+   ],
+   "releaseInfo": "2026",
+   "behaviorHints": {
+    "defaultVideoId": "tt6933238",
+    "hasScheduledVideos": false
+   }
+  }
+ ]
+}

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:Parche.App.Localization"
+             xmlns:vm="clr-namespace:Parche.App.ViewModels"
+             xmlns:controls="clr-namespace:Parche.App.Controls"
+             x:Class="Parche.App.Views.SettingsPage"
+             x:DataType="vm:SettingsViewModel">
+  <ScrollView>
+    <VerticalStackLayout Spacing="6" Padding="{OnIdiom Default='16,40,16,40', TV='48,36,48,40'}"
+                         MaximumWidthRequest="{OnIdiom Default=9999, TV=900}" HorizontalOptions="{OnIdiom Default=Fill, TV=Start}">
+      <Label Text="{l:Translate Settings_Title}" Style="{StaticResource Display}" Margin="0,0,0,8" />
+
+      <!-- Idioma de la interfaz -->
+      <Label Text="{l:Translate Lang_Title}" Style="{StaticResource SectionTitle}" Margin="0,14,0,6" />
+      <FlexLayout Wrap="Wrap">
+        <controls:Chip Text="{l:Translate Lang_System}" IsSelected="{Binding IsLangSystem}" Command="{Binding SetLanguageCommand}" CommandParameter="" Margin="0,0,8,8" />
+        <controls:Chip Text="{l:Translate Lang_Spanish}" IsSelected="{Binding IsLangEs}" Command="{Binding SetLanguageCommand}" CommandParameter="es" Margin="0,0,8,8" />
+        <controls:Chip Text="{l:Translate Lang_English}" IsSelected="{Binding IsLangEn}" Command="{Binding SetLanguageCommand}" CommandParameter="en" Margin="0,0,8,8" />
+        <controls:Chip Text="{l:Translate Lang_Portuguese}" IsSelected="{Binding IsLangPt}" Command="{Binding SetLanguageCommand}" CommandParameter="pt" Margin="0,0,8,8" />
+      </FlexLayout>
+
+      <!-- Catálogo -->
+      <Label Text="{l:Translate Settings_Catalog}" Style="{StaticResource SectionTitle}" Margin="0,14,0,6" />
+      <FlexLayout Wrap="Wrap" BindableLayout.ItemsSource="{Binding CatalogOptions}">
+        <BindableLayout.ItemTemplate>
+          <DataTemplate x:DataType="vm:ChipOption">
+            <controls:Chip Text="{Binding Label}" IsSelected="{Binding IsSelected}" Margin="0,0,8,8"
+                           Command="{Binding SelectCatalogCommand, Source={RelativeSource AncestorType={x:Type vm:SettingsViewModel}}, x:DataType=vm:SettingsViewModel}"
+                           CommandParameter="{Binding .}" />
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
+      </FlexLayout>
+      <Label Text="{l:Translate Settings_TmdbKey}" Style="{StaticResource Muted}" />
+      <Border BackgroundColor="{StaticResource Surface2}" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="12,2">
+        <Entry Text="{Binding TmdbKey}" Placeholder="{l:Translate Settings_TmdbKey}" Keyboard="Plain" />
+      </Border>
+      <Label Text="{l:Translate Settings_TmdbHelp}" Style="{StaticResource Muted}" FontSize="12" />
+
+      <!-- Addons de fuentes -->
+      <Label Text="{l:Translate Settings_Addons}" Style="{StaticResource SectionTitle}" Margin="0,14,0,6" />
+      <Label Text="{l:Translate Settings_AddonsHelp}" Style="{StaticResource Muted}" FontSize="12" />
+      <VerticalStackLayout Spacing="6" BindableLayout.ItemsSource="{Binding StreamAddonRows}">
+        <BindableLayout.ItemTemplate>
+          <DataTemplate x:DataType="vm:UrlRow">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+              <Border BackgroundColor="{StaticResource Surface2}" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="12,2">
+                <Entry Text="{Binding Url}" Placeholder="https://…" Keyboard="Url" />
+              </Border>
+              <Button Grid.Column="1" Text="{l:Translate Common_Remove}" Style="{StaticResource GlassButton}" VerticalOptions="Center"
+                      Command="{Binding RemoveStreamAddonCommand, Source={RelativeSource AncestorType={x:Type vm:SettingsViewModel}}, x:DataType=vm:SettingsViewModel}"
+                      CommandParameter="{Binding .}" />
+            </Grid>
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
+      </VerticalStackLayout>
+      <Button Text="{l:Translate Settings_AddAddon}" Style="{StaticResource GlassButton}" Command="{Binding AddStreamAddonCommand}"
+              HorizontalOptions="Start" Margin="0,4,0,0" />
+
+      <!-- Idiomas de las fuentes -->
+      <Label Text="{l:Translate Settings_StreamLangs}" Style="{StaticResource SectionTitle}" Margin="0,14,0,6" />
+      <FlexLayout Wrap="Wrap" BindableLayout.ItemsSource="{Binding SourceLangOptions}">
+        <BindableLayout.ItemTemplate>
+          <DataTemplate x:DataType="vm:ChipOption">
+            <controls:Chip Text="{Binding Label}" IsSelected="{Binding IsSelected}" Margin="0,0,8,8"
+                           Command="{Binding ToggleCommand, Source={RelativeSource AncestorType={x:Type vm:SettingsViewModel}}, x:DataType=vm:SettingsViewModel}"
+                           CommandParameter="{Binding .}" />
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
+      </FlexLayout>
+
+      <!-- Calidad máxima -->
+      <Label Text="{l:Translate Settings_MaxQuality}" Style="{StaticResource SectionTitle}" Margin="0,14,0,6" />
+      <FlexLayout Wrap="Wrap" BindableLayout.ItemsSource="{Binding QualityOptions}">
+        <BindableLayout.ItemTemplate>
+          <DataTemplate x:DataType="vm:ChipOption">
+            <controls:Chip Text="{Binding Label}" IsSelected="{Binding IsSelected}" Margin="0,0,8,8"
+                           Command="{Binding SelectQualityCommand, Source={RelativeSource AncestorType={x:Type vm:SettingsViewModel}}, x:DataType=vm:SettingsViewModel}"
+                           CommandParameter="{Binding .}" />
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
+      </FlexLayout>
+
+      <!-- Subtítulos -->
+      <Label Text="{l:Translate Settings_SubLangs}" Style="{StaticResource SectionTitle}" Margin="0,14,0,6" />
+      <FlexLayout Wrap="Wrap" BindableLayout.ItemsSource="{Binding SubtitleOptions}">
+        <BindableLayout.ItemTemplate>
+          <DataTemplate x:DataType="vm:ChipOption">
+            <controls:Chip Text="{Binding Label}" IsSelected="{Binding IsSelected}" Margin="0,0,8,8"
+                           Command="{Binding ToggleCommand, Source={RelativeSource AncestorType={x:Type vm:SettingsViewModel}}, x:DataType=vm:SettingsViewModel}"
+                           CommandParameter="{Binding .}" />
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
+      </FlexLayout>
+
+      <!-- Addons de subtítulos -->
+      <Label Text="{l:Translate Settings_SubtitleAddons}" Style="{StaticResource SectionTitle}" Margin="0,14,0,6" />
+      <Label Text="{l:Translate Settings_SubtitleAddonsHelp}" Style="{StaticResource Muted}" FontSize="12" />
+      <VerticalStackLayout Spacing="6" BindableLayout.ItemsSource="{Binding SubtitleAddonRows}">
+        <BindableLayout.ItemTemplate>
+          <DataTemplate x:DataType="vm:UrlRow">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+              <Border BackgroundColor="{StaticResource Surface2}" StrokeThickness="0" StrokeShape="RoundRectangle 10" Padding="12,2">
+                <Entry Text="{Binding Url}" Placeholder="https://…" Keyboard="Url" />
+              </Border>
+              <Button Grid.Column="1" Text="{l:Translate Common_Remove}" Style="{StaticResource GlassButton}" VerticalOptions="Center"
+                      Command="{Binding RemoveSubtitleAddonCommand, Source={RelativeSource AncestorType={x:Type vm:SettingsViewModel}}, x:DataType=vm:SettingsViewModel}"
+                      CommandParameter="{Binding .}" />
+            </Grid>
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
+      </VerticalStackLayout>
+      <Button Text="{l:Translate Settings_AddAddon}" Style="{StaticResource GlassButton}" Command="{Binding AddSubtitleAddonCommand}"
+              HorizontalOptions="Start" Margin="0,4,0,0" />
+
+      <!-- Descargas -->
+      <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12" Margin="0,14,0,0">
+        <Label Text="{l:Translate Settings_DownloadWifiOnly}" VerticalOptions="Center" />
+        <Switch Grid.Column="1" IsToggled="{Binding DownloadWifiOnly}" />
+      </Grid>
+
+      <!-- Plugins: cada uno abre su propia página de ajustes -->
+      <VerticalStackLayout Spacing="6" IsVisible="{Binding HasPluginSections}" BindableLayout.ItemsSource="{Binding PluginSections}">
+        <BindableLayout.ItemTemplate>
+          <DataTemplate x:DataType="vm:PluginSectionRow">
+            <controls:TvCard FocusScale="1.02" Padding="12" Margin="0,6,0,0" Background="{StaticResource Surface2Brush}"
+                             Command="{Binding OpenPluginSectionCommand, Source={RelativeSource AncestorType={x:Type vm:SettingsViewModel}}, x:DataType=vm:SettingsViewModel}"
+                             CommandParameter="{Binding .}">
+              <VerticalStackLayout Spacing="2">
+                <Label Text="{Binding Title}" FontAttributes="Bold" />
+                <Label Text="{Binding Description}" Style="{StaticResource Muted}" FontSize="12" IsVisible="{Binding HasDescription}" />
+              </VerticalStackLayout>
+            </controls:TvCard>
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
+      </VerticalStackLayout>
+
+      <!-- Guardar -->
+      <Label Text="{Binding Problems}" TextColor="{StaticResource Accent}" Margin="0,12,0,0" IsVisible="{Binding HasProblems}" />
+      <Label Text="{Binding StatusText}" TextColor="{StaticResource Success}" Margin="0,12,0,0" IsVisible="{Binding HasStatus}" />
+      <Button Text="{l:Translate Settings_Save}" Style="{StaticResource PrimaryButton}" ImageSource="{x:Null}"
+              Command="{Binding SaveCommand}" HorizontalOptions="Start" Margin="0,12,0,0" />
+
+      <!-- Acerca de -->
+      <Label Text="{l:Translate About_Title}" Style="{StaticResource SectionTitle}" Margin="0,28,0,6" />
+      <Label Text="{l:Translate About_Tmdb}" Style="{StaticResource Muted}" FontSize="12" />
+      <Label Text="{l:Translate About_Licenses}" Style="{StaticResource Muted}" FontSize="12" />
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

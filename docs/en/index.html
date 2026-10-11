@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parche — Media center powered by addons</title>
+<meta name="description" content="Parche is a media center for Android (phone and Android TV), Windows and Roku that plays content from the addons you add. Compatible with the Stremio addon protocol. Open source, MIT license.">
+<meta name="theme-color" content="#0B0B14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Parche — Media center powered by addons">
+<meta property="og:description" content="Media center for Android, Android TV, Windows and Roku. You add the addons; Parche ships no content. Open source (MIT).">
+<meta property="og:url" content="https://fsoftt.github.io/Parche/en/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_419">
+<link rel="canonical" href="https://fsoftt.github.io/Parche/en/">
+<link rel="alternate" hreflang="es" href="https://fsoftt.github.io/Parche/">
+<link rel="alternate" hreflang="en" href="https://fsoftt.github.io/Parche/en/">
+<link rel="alternate" hreflang="x-default" href="https://fsoftt.github.io/Parche/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238B5CF6'/%3E%3Cstop offset='1' stop-color='%23EC4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%23151522'/%3E%3Cpath d='M11 8v16l13-8z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<script src="../main.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8B5CF6"/><stop offset="1" stop-color="#EC4899"/>
+    </linearGradient>
+    <symbol id="gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.76 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></g></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></g></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h12M4 12h12M4 18h8M19 15v6M16 18h6"/></g></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 20h16"/></g></symbol>
+    <symbol id="i-lang" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></g></symbol>
+    <symbol id="i-sub" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M7 12h4M13 12h4M7 15.5h7"/></g></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5l8 7-8 7zM17 5v14"/></g></symbol>
+    <symbol id="i-remote" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="4"/><circle cx="12" cy="8" r="2"/><path d="M12 14v.01M12 18v.01"/></g></symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Parche, home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#151522"/><path d="M11 8v16l13-8z" fill="url(#brand)"/></svg>
+      Parche
+    </a>
+    <nav aria-label="Main">
+      <a href="#features">Features</a>
+      <a href="#addons">Addons</a>
+      <a href="#install">Install</a>
+      <a href="#roku">Roku</a>
+      <a href="#plugins">Plugins</a>
+      <div class="lang" role="group" aria-label="Language"><a href="../" lang="es" hreflang="es" data-lang="es" aria-label="Español">ES</a><a href="./" lang="en" hreflang="en" data-lang="en" aria-current="true">EN</a></div>
+      <a class="nav-gh" href="https://github.com/fsoftt/Parche"><svg width="18" height="18" aria-hidden="true"><use href="#gh"/></svg>GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+<section class="hero" id="top">
+  <div class="glow" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Open source · MIT</p>
+      <h1>Your media center, <span class="grad-text">powered by your addons</span></h1>
+      <p class="pitch">Parche is a media center for <strong>Android (phone and Android TV), Windows and Roku</strong>. It shows the catalog and plays content from the addons you add. It is compatible with the Stremio addon protocol.</p>
+      <div class="btns">
+        <a class="btn btn-primary" href="#install"><svg aria-hidden="true"><use href="#i-down"/></svg>Install</a>
+        <a class="btn btn-ghost" href="https://github.com/fsoftt/Parche"><svg aria-hidden="true"><use href="#gh"/></svg>View on GitHub</a>
+      </div>
+      <ul class="chips" aria-label="Platforms">
+        <li>Android</li><li>Android TV</li><li>Windows</li><li>Roku</li><li>English and Spanish (Latin American first)</li>
+      </ul>
+    </div>
+    <div class="devices" role="img" aria-label="Illustration of Parche on a TV and a phone: rows of sample posters and a Continue watching row">
+      <div class="tv" aria-hidden="true">
+        <div class="tv-screen">
+          <div class="tv-hero"><b>Sample title</b><span></span><span style="width:34%"></span><em>Play</em></div>
+          <div class="tv-row"><div class="cover a sel"></div><div class="cover b"></div><div class="cover c"></div><div class="cover d"></div><div class="cover e"></div></div>
+        </div>
+        <div class="tv-stand"></div>
+      </div>
+      <div class="phone-wrap" aria-hidden="true">
+        <div class="phone"><div class="screen">
+          <div class="ph-h">Home</div>
+          <div class="ph-sec">Continue watching</div>
+          <div class="car"><div class="card"><div class="cover c"></div><div class="cname">Sample one</div><div class="bar"></div></div><div class="card"><div class="cover e"></div><div class="cname">Sample two</div><div class="bar"></div></div><div class="card"><div class="cover d"></div><div class="cname">Sample three</div></div></div>
+          <div class="ph-sec">Trending</div>
+          <div class="car"><div class="card"><div class="cover a"></div><div class="cname">Sample four</div></div><div class="card"><div class="cover b"></div><div class="cname">Sample five</div></div><div class="card"><div class="cover c"></div><div class="cname">Sample six</div></div></div>
+          <div class="tabs"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow">Features</p>
+    <h2>Everything you need to watch</h2>
+    <p class="lead">A streaming-service style interface designed for the phone, the TV with a remote, and the desktop.</p>
+    <div class="grid">
+      <article class="feat glass"><div class="ico"><svg aria-hidden="true"><use href="#i-grid"/></svg></div><h3>Catalog from TMDB or Cinemeta</h3><p>Browse, search and filter by category. Cinemeta needs no key; with a TMDB key you get data in your language and more rows.</p></article>
+      <article class="feat glass"><div class="ico"><svg aria-hidden="true"><use href="#i-play"/></svg></div><h3>Continue watching</h3><p>Remembers where you stopped in each title and resumes from Home.</p></article>
+      <article class="feat glass"><div class="ico"><svg aria-hidden="true"><use href="#i-list"/></svg></div><h3>My list</h3><p>Save what you want to watch later and find it again in its own tab.</p></article>
+      <article class="feat glass"><div class="ico"><svg aria-hidden="true"><use href="#i-down"/></svg></div><h3>Offline downloads</h3><p>Download to watch without internet, with a queue and resume. You can limit downloads to WiFi.</p></article>
+      <article class="feat glass"><div class="ico"><svg aria-hidden="true"><use href="#i-lang"/></svg></div><h3>Preferred audio language</h3><p>Options are ordered by your languages, with Latin American Spanish first (then Spanish from Spain and English), and a maximum quality you choose.</p></article>
+      <article class="feat glass"><div class="ico"><svg aria-hidden="true"><use href="#i-sub"/></svg></div><h3>Configurable subtitles</h3><p>Add as many subtitle addons as you like: all are queried, tracks are merged and filtered by your languages.</p></article>
+      <article class="feat glass"><div class="ico"><svg aria-hidden="true"><use href="#i-next"/></svg></div><h3>Automatic next source</h3><p>If a source fails, Parche tries the next one in the list without sending you back.</p></article>
+      <article class="feat glass"><div class="ico"><svg aria-hidden="true"><use href="#i-remote"/></svg></div><h3>Made for the TV remote</h3><p>Android TV with a side menu and D-pad navigation; Roku with visible focus across the whole channel.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="addons">
+  <div class="wrap">
+    <p class="eyebrow">Addons</p>
+    <h2>How to add addons</h2>
+    <p class="lead">Parche does not include or host any content and ships with no preconfigured source addons. Without addons it works as a catalog; to play something, add the ones you choose.</p>
+    <div class="two">
+      <ol class="steps">
+        <li><strong>Open Settings.</strong> Find the source addons section.</li>
+        <li><strong>Paste the addon URL.</strong> Either the <code>manifest.json</code> address or the addon base works; <code>stremio://…</code> is also accepted. Only <code>http://</code> and <code>https://</code> addresses are allowed.</li>
+        <li><strong>Repeat for subtitles.</strong> There is a separate list of subtitle addons (OpenSubtitles is the default).</li>
+        <li><strong>Optional:</strong> enter your TMDB key (themoviedb.org/settings/api) and adjust languages, maximum quality and WiFi-only downloads.</li>
+      </ol>
+      <div class="panel glass">
+        <h3>On Roku</h3>
+        <p>Typing a URL with the remote is awkward. Open the on-screen keyboard dialog and use the keyboard of the <strong>Roku mobile app</strong> to paste the URL from your phone's clipboard.</p>
+        <p>To remove an addon, focus its row in Settings and press <code>*</code> on the remote.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <p class="eyebrow">Install</p>
+    <h2>Download and install</h2>
+    <div class="two">
+      <div class="panel glass">
+        <h3>Android and Android TV</h3>
+        <p>The same APK works on phone and TV.</p>
+        <ol class="steps" style="margin-top:14px">
+          <li>Download the APK from the <a href="https://github.com/fsoftt/Parche/releases">releases</a> or, if there is none, from the <code>parche-android-apk</code> artifact in <a href="https://github.com/fsoftt/Parche/actions/workflows/android.yml">GitHub Actions</a>.</li>
+          <li>Open it on the device. Android will ask you to allow <strong>installing unknown apps</strong> (from unknown sources) for the browser or file manager you use.</li>
+          <li>Confirm the installation and open Parche.</li>
+        </ol>
+        <p>On Android TV you can move the APK over with a USB drive or a file app.</p>
+      </div>
+      <div class="panel glass">
+        <h3>Windows</h3>
+        <p>For now it is built from source. You need Windows 10 1809 or later, the .NET 10 SDK and the <code>maui-windows</code> workload.</p>
+        <pre class="code" style="margin-top:14px"><code>dotnet workload install maui-windows
+dotnet build src/Parche.App/Parche.App.csproj `
+  -f net10.0-windows10.0.19041.0</code></pre>
+        <p>The result is a loose <code>.exe</code> (no MSIX) in <code>src\Parche.App\bin\Debug\net10.0-windows10.0.19041.0\win-x64\</code>. That whole folder can be copied to another machine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="roku">
+  <div class="wrap">
+    <p class="eyebrow">Roku</p>
+    <h2>Installing on Roku, step by step</h2>
+    <p class="lead">The Roku version is a separate project written in BrightScript: <a href="https://github.com/fsoftt/ParcheRoku">fsoftt/ParcheRoku</a>. It is not in the Roku store; it is installed in developer mode ("sideloading"). You need a Roku (tested on a Roku Express) and a PC on the <strong>same network</strong>.</p>
+
+    <div class="sub">
+      <h3>1. Enable developer mode</h3>
+      <ol class="steps" style="margin-top:16px">
+        <li>Go to the Roku home screen (not inside a channel).</li>
+        <li>On the remote press, without long pauses: <strong>Home ×3, Up ×2, Right, Left, Right, Left, Right</strong>. If nothing happens, try again faster.</li>
+        <li><em>Developer Settings</em> opens. <strong>Write down the IP</strong> shown (for example <code>192.168.1.16</code>).</li>
+        <li>Choose <strong>Enable installer and restart</strong> and accept the SDK agreement (you may need to scroll to the end of the text).</li>
+        <li>Create a <strong>developer password</strong>. It is only for installing channels (user <code>rokudev</code>), not your Roku account password. The Roku restarts.</li>
+      </ol>
+      <p class="note">To check it is active, from the PC: <code>curl.exe http://ROKU_IP:8060/query/device-info</code> should include <code>&lt;developer-enabled&gt;true&lt;/developer-enabled&gt;</code>.</p>
+    </div>
+
+    <div class="sub">
+      <h3>2. Package the channel</h3>
+      <p class="lead">With <a href="https://nodejs.org">Node.js</a> installed, inside the ParcheRoku repository folder:</p>
+      <pre class="code cmd"><code>npm install
+npm run package</code></pre>
+      <p class="note">This produces <code>dist/ParcheRoku-&lt;version&gt;-public.zip</code>. It validates the code and runs the tests first.</p>
+    </div>
+
+    <div class="sub">
+      <h3>3. Install on the Roku</h3>
+      <div class="two">
+        <div class="panel glass">
+          <h3>From the browser</h3>
+          <ol class="steps" style="margin-top:8px">
+            <li>Open <code>http://ROKU_IP</code> on the PC. User <code>rokudev</code> and your password from step 1.</li>
+            <li>In <em>Development Application Installer</em> click <strong>Upload</strong>, pick the <code>.zip</code>, then <strong>Install</strong> (or <strong>Replace</strong> if a version was already there).</li>
+          </ol>
+        </div>
+        <div class="panel glass">
+          <h3>With a single command</h3>
+          <p>Packages, installs and opens the channel (needs Node 18 or later).</p>
+          <pre class="code" style="margin-top:12px"><code><span class="c"># PowerShell</span>
+$env:ROKU_IP = "ROKU_IP"
+$env:ROKU_PASS = "PASSWORD"
+npm run deploy
+
+<span class="c"># bash / macOS / Linux</span>
+ROKU_IP=ROKU_IP ROKU_PASS=PASSWORD npm run deploy</code></pre>
+        </div>
+      </div>
+      <div class="cmd">
+        <h3>Or with curl, no Node needed</h3>
+        <pre class="code"><code>curl.exe --digest -u rokudev:PASSWORD -F "mysubmit=Install" -F "archive=@dist/ParcheRoku-0.1.00001-public.zip" http://ROKU_IP/plugin_install</code></pre>
+        <p class="note">In Windows PowerShell 5.1 type <code>curl.exe</code>: plain <code>curl</code> is an alias for another command. The response should include <code>Install Success</code>. The channel shows up on the home screen as <strong>Parche</strong> with a <em>dev</em> label.</p>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>4. Add addons</h3>
+      <p class="lead">Open the channel, go to <strong>Settings</strong> and add your addons. To paste the URL use the Roku mobile app keyboard (see <a href="#addons">How to add addons</a>).</p>
+    </div>
+
+    <div class="sub">
+      <h3>Notes</h3>
+      <div class="panel glass" style="margin-top:14px"><ul>
+        <li>Only <strong>one</strong> developer-mode channel can exist: if you install another one, or disable developer mode, Parche is deleted, along with its settings.</li>
+        <li>Updating means packaging and installing again: saved settings are kept.</li>
+        <li>The Roku IP may change if the router reassigns it. Check it again in <em>Developer Settings</em> or under Settings → Network → About.</li>
+        <li>To uninstall, open <code>http://ROKU_IP</code> and click <strong>Delete</strong>.</li>
+      </ul></div>
+    </div>
+
+    <div class="sub">
+      <h3>Troubleshooting</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th scope="col">Symptom</th><th scope="col">Cause and fix</th></tr></thead>
+        <tbody>
+          <tr><td><code>401 Unauthorized</code> when installing</td><td>Wrong developer password. If you forgot it, disable and re-enable developer mode to create a new one.</td></tr>
+          <tr><td><code>Install Failure: Compilation Failed</code></td><td>A BrightScript error. See the exact line in the console (<code>telnet ROKU_IP 8085</code>).</td></tr>
+          <tr><td><code>Identical to previous version</code></td><td>That same <code>.zip</code> is already installed; no need to reinstall.</td></tr>
+          <tr><td><code>403</code> when using ECP (<code>:8060</code>)</td><td>You need to set Network access → Permissive in the Roku settings.</td></tr>
+          <tr><td>The channel does not show on the home screen</td><td>Look at the end of the channel list; if it is not there, the install failed: check the installer response.</td></tr>
+          <tr><td><code>http://ROKU_IP</code> does not respond</td><td>Wrong IP, the PC is on another network (or the guest network), or developer mode is not active.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="btns"><a class="btn btn-ghost" href="https://github.com/fsoftt/ParcheRoku"><svg aria-hidden="true"><use href="#gh"/></svg>Parche Roku repository</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="plugins">
+  <div class="wrap">
+    <p class="eyebrow">For developers</p>
+    <h2>Plugins and extension points</h2>
+    <p class="lead">Parche is a neutral addon client. Anyone who wants to offer something extra builds it separately and links it with a props file; without it, the app builds and works the same, using only the addons the user adds.</p>
+    <div class="grid">
+      <article class="feat glass"><h3><code>IStreamSourceProvider</code></h3><p>In Core. Returns addresses of additional source addons (<code>GetAddonUrls(AppSettings)</code>). The engine merges them with the user's, without duplicates.</p></article>
+      <article class="feat glass"><h3><code>IStreamResolver</code></h3><p>In App. Turns an option that has no direct link into a playable URL, with progress and preloading. With no resolver registered, those options are dropped.</p></article>
+      <article class="feat glass"><h3><code>IDownloadResolver</code></h3><p>In App. Full download of options without a direct link; the queue and the common HTTP download are handled by the app.</p></article>
+      <article class="feat glass"><h3><code>IPluginSettingsSection</code></h3><p>In App. Adds a row in Settings that opens the plugin's own page, built in C#.</p></article>
+    </div>
+    <div class="two">
+      <div>
+        <h3>Composition</h3>
+        <ol class="steps" style="margin-top:16px">
+          <li><code>MauiProgram</code> is a <code>static partial class</code> and declares <code>static partial void AddExternalSources(IServiceCollection)</code>.</li>
+          <li><code>Parche.App.csproj</code> imports <code>$(ParchePluginsProps)</code>: by default <code>..\..\..\Parche.Plugins.props</code>, or the path you pass with <code>-p:ParchePluginsProps=&lt;path&gt;</code>. With a value that does not exist (for example <code>none</code>) nothing is imported.</li>
+          <li>That file adds <code>ProjectReference</code> items and a <code>Compile</code> item that implements the partial method and registers your pieces.</li>
+        </ol>
+        <p class="note">A plugin's settings are stored as JSON per key (<code>GetPlugin&lt;T&gt;</code> / <code>SetPlugin&lt;T&gt;</code>). Details in <a href="https://github.com/fsoftt/Parche/blob/main/ARCHITECTURE.md">ARCHITECTURE.md</a> (in Spanish).</p>
+      </div>
+      <pre class="code" aria-label="Plugin example"><code><span class="c">// Parche.Plugins.props</span>
+&lt;Project&gt;
+  &lt;ItemGroup&gt;
+    &lt;ProjectReference Include="..\MyPlugin\MyPlugin.csproj" /&gt;
+    &lt;Compile Include="..\MyPlugin\Registration.cs" /&gt;
+  &lt;/ItemGroup&gt;
+&lt;/Project&gt;
+
+<span class="c">// Registration.cs</span>
+<span class="k">partial class</span> <span class="t">MauiProgram</span>
+{
+    <span class="k">static partial void</span> AddExternalSources(<span class="t">IServiceCollection</span> s)
+    {
+        s.AddSingleton&lt;<span class="t">IStreamSourceProvider</span>, MyProvider&gt;();
+        s.AddSingleton&lt;<span class="t">IPluginSettingsSection</span>, MySettings&gt;();
+    }
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<section id="architecture">
+  <div class="wrap">
+    <p class="eyebrow">Architecture</p>
+    <h2>How it is built</h2>
+    <div class="layers">
+      <div class="glass"><strong>Parche.Core</strong>net8.0, no UI: catalog, addon client, source ranking, subtitles, settings and library.</div>
+      <div class="glass"><strong>Parche.App</strong>.NET MAUI (net10.0-android and net10.0-windows). MVVM, UI text in Spanish, English and Portuguese, and plugin extension points.</div>
+      <div class="glass"><strong>Playback</strong>ExoPlayer (Media3) on Android and LibVLC on Windows. Roku is a separate BrightScript + SceneGraph channel.</div>
+    </div>
+    <pre class="flow glass" aria-label="Flow diagram">Catalog (TMDB or Cinemeta)    ─►  titles, genres, seasons
+Source addons (yours)        ─►  playback options
+Subtitle addons              ─►  external tracks
+                   │
+        Parche.Core · ParcheEngine ──► Parche.App (MAUI)
+                                        └─► ExoPlayer (Android) / LibVLC (Windows)</pre>
+    <h3 class="sub">Build and test</h3>
+    <p class="lead">Requirements: .NET 10 SDK with the <code>maui-android</code> workload, and Java 21.</p>
+    <pre class="code cmd"><code>dotnet test tests/Parche.Core.Tests
+dotnet build src/Parche.App/Parche.App.csproj -f net10.0-android
+dotnet build src/Parche.App/Parche.App.csproj -f net10.0-windows10.0.19041.0</code></pre>
+    <p class="note">GitHub Actions runs the tests on every push and pull request to <code>main</code>, and builds the Android APK when publishing to the <code>release</code> branch.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="https://github.com/fsoftt/Parche">Parche on GitHub</a>
+      <a href="https://github.com/fsoftt/ParcheRoku">Parche Roku</a>
+      <a href="https://github.com/fsoftt/Parche/blob/main/LICENSE">MIT license</a>
+      <a href="https://github.com/fsoftt/Parche/blob/main/ARCHITECTURE.md">Architecture</a>
+    </div>
+    <p><strong>License.</strong> MIT, copyright (c) 2026 fsoftt.</p>
+    <p><strong>Third-party notices.</strong> This product uses the TMDB API but is not endorsed or certified by TMDB. It uses LibVLC and LibVLCSharp (LGPL-2.1) on Windows, Media3 / ExoPlayer (Apache-2.0) on Android, .NET MAUI and CommunityToolkit.Mvvm (MIT), and the Open Sans font (SIL OFL 1.1).</p>
+    <p><strong>Stremio.</strong> Parche is compatible with the Stremio addon protocol, but it is an independent project: it has no relationship with Stremio and is not affiliated with, sponsored or endorsed by Stremio. Stremio is a trademark of its respective owners.</p>
+    <p><strong>Disclaimer.</strong> Parche is an independent project, not affiliated with Stremio or TMDB. It includes and hosts no content. Users are responsible for what they access and for complying with the laws and the terms of the services they configure.</p>
+  </div>
+</footer>
+</body>
+</html>

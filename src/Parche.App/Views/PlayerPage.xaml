@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:Parche.App.Localization"
+             xmlns:vm="clr-namespace:Parche.App.ViewModels"
+             xmlns:controls="clr-namespace:Parche.App.Controls"
+             x:Class="Parche.App.Views.PlayerPage"
+             x:DataType="vm:PlayerViewModel"
+             BackgroundColor="Black"
+             Shell.TabBarIsVisible="False">
+  <Grid>
+    <controls:NativeVideoView x:Name="Video" Stream="{Binding Stream}" Title="{Binding Title}" />
+
+    <!-- Barra superior: aparece con los controles, al pausar o al tocar; se oculta sola a los 4 s -->
+    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" VerticalOptions="Start"
+                IsVisible="{Binding OverlayVisible}">
+      <HorizontalStackLayout Spacing="10" Padding="{OnIdiom Default='16,28,16,0', TV='48,24,48,0'}">
+        <Button x:Name="SourcesButton" Text="{l:Translate Player_OtherSource}" Style="{StaticResource GlassButton}"
+                Command="{Binding BackToSourcesCommand}" Focused="OnBarFocused" />
+        <Button x:Name="DiagButton" Text="{l:Translate Player_Diagnostics}" Style="{StaticResource GlassButton}"
+                Command="{Binding ShowDiagnosticsCommand}" Focused="OnBarFocused" />
+      </HorizontalStackLayout>
+    </ScrollView>
+
+    <!-- Estado de la fuente durante la reproducción: ↓ velocidad · conexiones (se oculta con los controles) -->
+    <Border IsVisible="{Binding LiveVisible}" BackgroundColor="{StaticResource Glass}" StrokeThickness="1" Stroke="#33FFFFFF"
+            StrokeShape="RoundRectangle 14" Padding="12,4" HorizontalOptions="End" VerticalOptions="End"
+            Margin="{OnIdiom Default='0,0,16,72', TV='0,0,48,96'}" InputTransparent="True">
+      <Label Text="{Binding LiveText}" FontSize="12" TextColor="{StaticResource TextMuted}" />
+    </Border>
+
+    <!-- Preparando (fase, progreso, velocidad, conexiones) o error -->
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="14" Padding="32"
+                         IsVisible="{Binding Stream, Converter={StaticResource HasValue}, ConverterParameter=invert}"
+                         WidthRequest="{OnIdiom Default=340, TV=560}">
+      <Label Text="{Binding Title}" Style="{StaticResource SectionTitle}" HorizontalTextAlignment="Center" Margin="0" />
+
+      <VerticalStackLayout Spacing="10" IsVisible="{Binding IsBusy}">
+        <ActivityIndicator IsRunning="{Binding IsBusy}" />
+        <Label Text="{Binding Status}" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+        <VerticalStackLayout Spacing="8" IsVisible="{Binding IsResolving}">
+          <ProgressBar Progress="{Binding Fraction}" ProgressColor="{StaticResource Accent}" />
+          <Label Text="{Binding ProgressText}" Style="{StaticResource Muted}" HorizontalTextAlignment="Center" />
+          <Label Text="{Binding SpeedText}" Style="{StaticResource Muted}" HorizontalTextAlignment="Center" />
+          <Label Text="{Binding ConnectionsText}" Style="{StaticResource Muted}" HorizontalTextAlignment="Center" />
+          <Label Text="{l:Translate Player_BufferHint}" Style="{StaticResource Muted}" HorizontalTextAlignment="Center" FontSize="12" />
+        </VerticalStackLayout>
+        <Button x:Name="CancelButton" Text="{l:Translate Common_Cancel}" Style="{StaticResource GlassButton}"
+                Command="{Binding BackToSourcesCommand}" HorizontalOptions="Center" />
+      </VerticalStackLayout>
+
+      <VerticalStackLayout Spacing="10" IsVisible="{Binding HasError}">
+        <Label Text="{Binding Error}" TextColor="{StaticResource Accent}" HorizontalTextAlignment="Center" />
+        <Label Text="{l:Translate Player_ResolveHint}" Style="{StaticResource Muted}" HorizontalTextAlignment="Center"
+               IsVisible="{Binding IsResolving}" />
+        <FlexLayout Wrap="Wrap" JustifyContent="Center">
+          <Button x:Name="RetryButton" Text="{l:Translate Common_Retry}" Command="{Binding RetryCommand}" Margin="6" />
+          <Button Text="{l:Translate Player_OtherSource}" Style="{StaticResource GlassButton}" Command="{Binding BackToSourcesCommand}" Margin="6" />
+          <Button Text="{l:Translate Player_Diagnostics}" Style="{StaticResource GlassButton}" Command="{Binding ShowDiagnosticsCommand}" Margin="6" />
+        </FlexLayout>
+      </VerticalStackLayout>
+    </VerticalStackLayout>
+
+    <!-- Panel de diagnóstico -->
+    <Border IsVisible="{Binding DiagnosticsVisible}" BackgroundColor="{StaticResource Bg}" StrokeThickness="1"
+            Stroke="{StaticResource Stroke}" StrokeShape="RoundRectangle 14" Opacity="0.98"
+            Margin="{OnIdiom Default='12,36,12,12', TV='60,40'}">
+      <ScrollView>
+        <VerticalStackLayout Spacing="12" Padding="16">
+          <Label Text="{l:Translate Player_Diagnostics}" Style="{StaticResource SectionTitle}" Margin="0" />
+          <HorizontalStackLayout Spacing="10">
+            <Button x:Name="CopyButton" Text="{l:Translate Player_Copy}" Style="{StaticResource PrimaryButton}"
+                    ImageSource="{x:Null}" Command="{Binding CopyDiagnosticsCommand}" />
+            <Button Text="{l:Translate Common_Close}" Style="{StaticResource GlassButton}" Command="{Binding CloseDiagnosticsCommand}" />
+          </HorizontalStackLayout>
+          <Label Text="{Binding DiagnosticsText}" FontSize="12" LineBreakMode="CharacterWrap" />
+        </VerticalStackLayout>
+      </ScrollView>
+    </Border>
+  </Grid>
+</ContentPage>

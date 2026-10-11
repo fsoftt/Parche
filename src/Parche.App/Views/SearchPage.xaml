@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:Parche.App.Localization"
+             xmlns:vm="clr-namespace:Parche.App.ViewModels"
+             xmlns:m="clr-namespace:Parche.Core.Models;assembly=Parche.Core"
+             xmlns:controls="clr-namespace:Parche.App.Controls"
+             x:Class="Parche.App.Views.SearchPage"
+             x:DataType="vm:SearchViewModel">
+  <Grid RowDefinitions="Auto,*" Padding="{OnIdiom Default='16,40,16,0', TV='48,36,48,0'}" RowSpacing="16">
+    <Border BackgroundColor="{StaticResource Surface2}" StrokeThickness="0" StrokeShape="RoundRectangle 10"
+            Padding="12,2" MaximumWidthRequest="{OnIdiom Default=9999, TV=760}" HorizontalOptions="Fill">
+      <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+        <Image Source="tab_search.png" WidthRequest="22" HeightRequest="22" Opacity="0.7" />
+        <Entry x:Name="QueryEntry" Grid.Column="1" Text="{Binding Query}" Placeholder="{l:Translate Search_Placeholder}"
+               ReturnType="Search" ReturnCommand="{Binding SearchCommand}" ClearButtonVisibility="WhileEditing" />
+        <ActivityIndicator Grid.Column="2" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                           WidthRequest="20" HeightRequest="20" />
+      </Grid>
+    </Border>
+
+    <CollectionView Grid.Row="1" ItemsSource="{Binding Results}" SelectionMode="None">
+      <CollectionView.ItemsLayout>
+        <GridItemsLayout x:Name="Grid" Orientation="Vertical" Span="{OnIdiom Default=3, TV=6}"
+                         VerticalItemSpacing="{OnIdiom Default=10, TV=20}" HorizontalItemSpacing="{OnIdiom Default=8, TV=20}" />
+      </CollectionView.ItemsLayout>
+      <CollectionView.ItemTemplate>
+        <DataTemplate x:DataType="m:MediaItem">
+          <controls:TvCard HeightRequest="{OnIdiom Default=158, TV=230}" Margin="{OnIdiom Default=0, TV=6}"
+                           Command="{Binding OpenCommand, Source={RelativeSource AncestorType={x:Type vm:SearchViewModel}}, x:DataType=vm:SearchViewModel}"
+                           CommandParameter="{Binding .}">
+            <Grid>
+              <Label Text="{Binding Title}" Style="{StaticResource Muted}" Margin="8" MaxLines="4"
+                     VerticalOptions="Center" HorizontalTextAlignment="Center" />
+              <Image Source="{Binding Poster}" Aspect="AspectFill" />
+            </Grid>
+          </controls:TvCard>
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+      <CollectionView.EmptyView>
+        <VerticalStackLayout Padding="24" Spacing="8">
+          <Label Text="{l:Translate Search_NoResults}" Style="{StaticResource SectionTitle}" Margin="0" IsVisible="{Binding NoResults}" />
+          <Label Text="{Binding Error}" TextColor="{StaticResource Accent}" IsVisible="{Binding HasError}" />
+          <Label Text="{l:Translate Search_Hint}"
+                 Style="{StaticResource Muted}" />
+        </VerticalStackLayout>
+      </CollectionView.EmptyView>
+    </CollectionView>
+  </Grid>
+</ContentPage>

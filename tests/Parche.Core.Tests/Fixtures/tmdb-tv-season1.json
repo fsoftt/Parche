@@ -1,0 +1,32 @@
+{
+ "_id": "x",
+ "air_date": "2008-01-20",
+ "name": "Temporada 1",
+ "season_number": 1,
+ "episodes": [
+  {
+   "episode_number": 2,
+   "season_number": 1,
+   "name": "El gato está en la bolsa...",
+   "overview": "Walt y Jesse...",
+   "still_path": "/b.jpg",
+   "air_date": "2008-01-27"
+  },
+  {
+   "episode_number": 1,
+   "season_number": 1,
+   "name": "Piloto",
+   "overview": "Un profesor...",
+   "still_path": "/a.jpg",
+   "air_date": "2008-01-20"
+  },
+  {
+   "episode_number": 3,
+   "season_number": 1,
+   "name": "...Y el gato está en la bolsa",
+   "overview": "",
+   "still_path": null,
+   "air_date": null
+  }
+ ]
+}

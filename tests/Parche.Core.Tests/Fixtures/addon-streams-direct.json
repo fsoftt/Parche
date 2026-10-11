@@ -1,0 +1,30 @@
+{
+ "streams": [
+  {
+   "name": "[RD+] Addon\n1080p",
+   "title": "Inception.2010.1080p.BluRay.x264.SPANISH-LATINO\n👤 120 💾 2.1 GB ⚙️ SiteA\nMulti Audio / 🇪🇸 / 🇲🇽 / 🇬🇧",
+   "url": "https://addon.test/direct/abababababababababababababababababababab/null/0/file.mkv",
+   "behaviorHints": {
+    "bingeGroup": "addon|1080p|BluRay",
+    "filename": "file.mkv",
+    "notWebReady": true,
+    "proxyHeaders": {
+     "request": {
+      "User-Agent": "Parche",
+      "Referer": "https://addon.test/"
+     }
+    }
+   }
+  },
+  {
+   "name": "[RD download] Addon\n2160p",
+   "title": "Inception.2010.2160p.UHD\n👤 10 💾 18 GB ⚙️ SiteB\n🇬🇧",
+   "url": "https://addon.test/direct/cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd/null/0/uhd.mkv"
+  },
+  {
+   "name": "Other",
+   "title": "sin enlace",
+   "externalUrl": "https://example.com"
+  }
+ ]
+}

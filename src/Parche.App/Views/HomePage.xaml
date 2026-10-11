@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:Parche.App.Localization"
+             xmlns:vm="clr-namespace:Parche.App.ViewModels"
+             xmlns:m="clr-namespace:Parche.Core.Models;assembly=Parche.Core"
+             xmlns:controls="clr-namespace:Parche.App.Controls"
+             x:Class="Parche.App.Views.HomePage"
+             x:DataType="vm:HomeViewModel">
+
+  <Grid>
+    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+      <CollectionView ItemsSource="{Binding Sections}" SelectionMode="None">
+
+        <!-- ===== Banner destacado ===== -->
+        <CollectionView.Header>
+          <VerticalStackLayout>
+          <Grid HeightRequest="{OnIdiom Default=560, TV=440}">
+            <Image Source="{Binding Preview.Wide}" Aspect="AspectFill" />
+            <BoxView Background="{StaticResource HeroFade}" />
+            <BoxView Background="{StaticResource HeroSideFade}" IsVisible="{Binding IsTv}" />
+
+            <VerticalStackLayout VerticalOptions="End"
+                                 HorizontalOptions="{OnIdiom Default=Center, TV=Start}"
+                                 MaximumWidthRequest="{OnIdiom Default=420, TV=620}"
+                                 Padding="{OnIdiom Default='24,0,24,20', TV='48,0,0,24'}"
+                                 Spacing="12">
+              <Label Text="{Binding PreviewMeta}" Style="{StaticResource Muted}"
+                     HorizontalTextAlignment="{OnIdiom Default=Center, TV=Start}"
+                     IsVisible="{Binding PreviewMeta, Converter={StaticResource HasValue}}" />
+              <Label Text="{Binding Preview.Title}" Style="{StaticResource Display}" MaxLines="2"
+                     HorizontalTextAlignment="{OnIdiom Default=Center, TV=Start}" />
+              <Label Text="{Binding Preview.Description}" Style="{StaticResource Muted}" MaxLines="3"
+                     HorizontalTextAlignment="{OnIdiom Default=Center, TV=Start}"
+                     IsVisible="{Binding Preview.Description, Converter={StaticResource HasValue}}" />
+
+              <FlexLayout Wrap="Wrap" JustifyContent="Start" HorizontalOptions="{OnIdiom Default=Center, TV=Start}"
+                          IsVisible="{Binding Hero, Converter={StaticResource HasValue}}">
+                <Button Text="{l:Translate Common_Play}" Style="{StaticResource PrimaryButton}" Command="{Binding PlayHeroCommand}" Margin="0,0,10,8"
+                        FlexLayout.Shrink="0" />
+                <Button Text="{l:Translate Common_MyList}" Style="{StaticResource GlassButton}" Command="{Binding ToggleHeroListCommand}"
+                        FlexLayout.Shrink="0"
+                        ImageSource="{Binding HeroInMyList, Converter={StaticResource BoolImage}, ConverterParameter='check.png|add.png'}"
+                        Margin="0,0,10,8" />
+                <Button Text="{l:Translate Common_Info}" Style="{StaticResource GlassButton}" Command="{Binding OpenCommand}"
+                        FlexLayout.Shrink="0"
+                        CommandParameter="{Binding Hero}" Margin="0,0,0,8" />
+              </FlexLayout>
+            </VerticalStackLayout>
+          </Grid>
+            <!-- ===== Continuar viendo ===== -->
+            <VerticalStackLayout IsVisible="{Binding HasContinue}">
+              <Label Text="{l:Translate Home_Continue}" Style="{StaticResource SectionTitle}" />
+              <CollectionView ItemsSource="{Binding Continue}" SelectionMode="None"
+                              HeightRequest="{OnIdiom Default=150, TV=190}"
+                              HorizontalScrollBarVisibility="Never">
+                <CollectionView.ItemsLayout>
+                  <LinearItemsLayout Orientation="Horizontal" ItemSpacing="{OnIdiom Default=8, TV=16}" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.Header>
+                  <BoxView WidthRequest="{OnIdiom Default=8, TV=40}" Color="Transparent" />
+                </CollectionView.Header>
+                <CollectionView.Footer>
+                  <BoxView WidthRequest="{OnIdiom Default=8, TV=40}" Color="Transparent" />
+                </CollectionView.Footer>
+                <CollectionView.ItemTemplate>
+                  <DataTemplate x:DataType="vm:ContinueRow">
+                    <Grid Padding="0,10">
+                      <controls:TvCard WidthRequest="{OnIdiom Default=200, TV=260}"
+                                       HeightRequest="{OnIdiom Default=128, TV=166}"
+                                       Command="{Binding ResumeCommand, Source={RelativeSource AncestorType={x:Type vm:HomeViewModel}}, x:DataType=vm:HomeViewModel}"
+                                       CommandParameter="{Binding .}">
+                        <Grid RowDefinitions="*,Auto,Auto">
+                          <Image Grid.RowSpan="3" Source="{Binding Image}" Aspect="AspectFill" />
+                          <BoxView Grid.RowSpan="3" Background="{StaticResource HeroFade}" />
+                          <Button Text="✕" FontSize="12" Padding="0" WidthRequest="28" HeightRequest="28" CornerRadius="14"
+                                  Style="{StaticResource GlassButton}" HorizontalOptions="End" VerticalOptions="Start" Margin="4"
+                                  IsVisible="{Binding IsTv, Source={RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Converter={StaticResource Not}, x:DataType=vm:HomeViewModel}"
+                                  Command="{Binding RemoveContinueCommand, Source={RelativeSource AncestorType={x:Type vm:HomeViewModel}}, x:DataType=vm:HomeViewModel}"
+                                  CommandParameter="{Binding .}" />
+                          <VerticalStackLayout Grid.Row="1" Padding="8,0,8,4" Spacing="0">
+                            <Label Text="{Binding Title}" FontAttributes="Bold" MaxLines="1" LineBreakMode="TailTruncation" />
+                            <Label Text="{Binding Subtitle}" Style="{StaticResource Muted}" FontSize="12" MaxLines="1"
+                                   LineBreakMode="TailTruncation" IsVisible="{Binding Subtitle, Converter={StaticResource HasValue}}" />
+                          </VerticalStackLayout>
+                          <ProgressBar Grid.Row="2" Progress="{Binding Fraction}" ProgressColor="{StaticResource Accent}" Margin="8,0,8,8" />
+                        </Grid>
+                      </controls:TvCard>
+                    </Grid>
+                  </DataTemplate>
+                </CollectionView.ItemTemplate>
+              </CollectionView>
+            </VerticalStackLayout>
+          </VerticalStackLayout>
+        </CollectionView.Header>
+
+        <!-- ===== Filas horizontales ===== -->
+        <CollectionView.ItemTemplate>
+          <DataTemplate x:DataType="m:MediaSection">
+            <VerticalStackLayout>
+              <Label Text="{Binding Title}" Style="{StaticResource SectionTitle}" />
+              <CollectionView ItemsSource="{Binding Items}" SelectionMode="None"
+                              HeightRequest="{OnIdiom Default=180, TV=240}"
+                              HorizontalScrollBarVisibility="Never">
+                <CollectionView.ItemsLayout>
+                  <LinearItemsLayout Orientation="Horizontal" ItemSpacing="{OnIdiom Default=8, TV=16}" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.Header>
+                  <BoxView WidthRequest="{OnIdiom Default=8, TV=40}" Color="Transparent" />
+                </CollectionView.Header>
+                <CollectionView.Footer>
+                  <BoxView WidthRequest="{OnIdiom Default=8, TV=40}" Color="Transparent" />
+                </CollectionView.Footer>
+                <CollectionView.ItemTemplate>
+                  <DataTemplate x:DataType="m:MediaItem">
+                    <Grid Padding="0,10">
+                      <controls:TvCard WidthRequest="{OnIdiom Default=106, TV=140}"
+                                       HeightRequest="{OnIdiom Default=158, TV=210}"
+                                       Command="{Binding OpenCommand, Source={RelativeSource AncestorType={x:Type vm:HomeViewModel}}, x:DataType=vm:HomeViewModel}"
+                                       HighlightCommand="{Binding HighlightCommand, Source={RelativeSource AncestorType={x:Type vm:HomeViewModel}}, x:DataType=vm:HomeViewModel}"
+                                       CommandParameter="{Binding .}">
+                        <Grid>
+                          <Label Text="{Binding Title}" Style="{StaticResource Muted}" Margin="8"
+                                 VerticalOptions="Center" HorizontalTextAlignment="Center" MaxLines="4" />
+                          <Image Source="{Binding Poster}" Aspect="AspectFill" />
+                          <Border IsVisible="{Binding Rating, Converter={StaticResource HasValue}}"
+                                  BackgroundColor="{StaticResource Glass}" StrokeThickness="0"
+                                  StrokeShape="RoundRectangle 4" Padding="5,1"
+                                  HorizontalOptions="End" VerticalOptions="Start" Margin="5">
+                            <Label Text="{Binding Rating, StringFormat='{0:0.0}'}" FontSize="11" FontAttributes="Bold" />
+                          </Border>
+                        </Grid>
+                      </controls:TvCard>
+                    </Grid>
+                  </DataTemplate>
+                </CollectionView.ItemTemplate>
+              </CollectionView>
+            </VerticalStackLayout>
+          </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+        <CollectionView.Footer>
+          <BoxView HeightRequest="32" Color="Transparent" />
+        </CollectionView.Footer>
+
+        <CollectionView.EmptyView>
+          <VerticalStackLayout Padding="32" Spacing="12" HorizontalOptions="Center">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+            <Label Text="{Binding Error}" Style="{StaticResource Muted}" HorizontalTextAlignment="Center"
+                   IsVisible="{Binding HasError}" />
+            <Button Text="{l:Translate Common_Retry}" Command="{Binding RefreshCommand}" IsVisible="{Binding HasError}"
+                    HorizontalOptions="Center" />
+          </VerticalStackLayout>
+        </CollectionView.EmptyView>
+      </CollectionView>
+    </RefreshView>
+
+    <!-- ===== Barra superior translúcida (celular) ===== -->
+    <Grid VerticalOptions="Start" HeightRequest="96" Padding="16,36,16,0" IsVisible="{Binding IsTv, Converter={StaticResource Not}}"
+          InputTransparent="True">
+      <BoxView Background="{StaticResource TopBarFade}" Margin="-16,-36,-16,0" InputTransparent="True" />
+      <Label Style="{StaticResource Brand}" VerticalOptions="Start" />
+    </Grid>
+  </Grid>
+</ContentPage>

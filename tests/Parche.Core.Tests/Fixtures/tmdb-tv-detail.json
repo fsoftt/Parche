@@ -1,0 +1,59 @@
+{
+ "id": 1396,
+ "name": "Breaking Bad",
+ "overview": "Walter White...",
+ "first_air_date": "2008-01-20",
+ "episode_run_time": [
+  45,
+  47
+ ],
+ "vote_average": 8.9,
+ "poster_path": "/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
+ "backdrop_path": "/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg",
+ "genres": [
+  {
+   "id": 18,
+   "name": "Drama"
+  },
+  {
+   "id": 80,
+   "name": "Crimen"
+  }
+ ],
+ "seasons": [
+  {
+   "season_number": 0,
+   "name": "Especiales",
+   "episode_count": 11
+  },
+  {
+   "season_number": 1,
+   "name": "Temporada 1",
+   "episode_count": 7
+  },
+  {
+   "season_number": 2,
+   "name": "Temporada 2",
+   "episode_count": 13
+  }
+ ],
+ "external_ids": {
+  "imdb_id": "tt0903747",
+  "tvdb_id": 81189
+ },
+ "credits": {
+  "cast": [
+   {
+    "id": 1,
+    "name": "Bryan Cranston"
+   },
+   {
+    "id": 2,
+    "name": "Aaron Paul"
+   }
+  ]
+ },
+ "videos": {
+  "results": []
+ }
+}

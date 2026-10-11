@@ -1,0 +1,212 @@
+{
+ "id": "com.linvo.cinemeta",
+ "version": "3.0.14",
+ "description": "The official addon for movie and series catalogs",
+ "name": "Cinemeta",
+ "resources": [
+  "catalog",
+  "meta",
+  "addon_catalog"
+ ],
+ "types": [
+  "movie",
+  "series"
+ ],
+ "idPrefixes": [
+  "tt"
+ ],
+ "addonCatalogs": [
+  {
+   "type": "all",
+   "id": "official",
+   "name": "Official"
+  },
+  {
+   "type": "movie",
+   "id": "official",
+   "name": "Official"
+  },
+  {
+   "type": "series",
+   "id": "official",
+   "name": "Official"
+  },
+  {
+   "type": "channel",
+   "id": "official",
+   "name": "Official"
+  },
+  {
+   "type": "all",
+   "id": "community",
+   "name": "Community"
+  },
+  {
+   "type": "movie",
+   "id": "community",
+   "name": "Community"
+  },
+  {
+   "type": "series",
+   "id": "community",
+   "name": "Community"
+  },
+  {
+   "type": "channel",
+   "id": "community",
+   "name": "Community"
+  },
+  {
+   "type": "tv",
+   "id": "community",
+   "name": "Community"
+  },
+  {
+   "type": "Podcasts",
+   "id": "community",
+   "name": "Community"
+  },
+  {
+   "type": "other",
+   "id": "community",
+   "name": "Community"
+  }
+ ],
+ "catalogs": [
+  {
+   "type": "movie",
+   "id": "top",
+   "genres": [
+    "Action",
+    "Adventure",
+    "Animation",
+    "Biography",
+    "Comedy",
+    "Crime",
+    "Documentary",
+    "Drama",
+    "Family",
+    "Fantasy",
+    "History",
+    "Horror",
+    "Mystery",
+    "Romance",
+    "Sci-Fi",
+    "Sport",
+    "Thriller",
+    "War",
+    "Western"
+   ],
+   "extra": [
+    {
+     "name": "genre",
+     "options": [
+      "Action",
+      "Adventure",
+      "Animation",
+      "Biography",
+      "Comedy",
+      "Crime",
+      "Documentary",
+      "Drama",
+      "Family",
+      "Fantasy",
+      "History",
+      "Horror",
+      "Mystery",
+      "Romance",
+      "Sci-Fi",
+      "Sport",
+      "Thriller",
+      "War",
+      "Western"
+     ]
+    },
+    {
+     "name": "search"
+    },
+    {
+     "name": "skip"
+    }
+   ],
+   "extraSupported": [
+    "search",
+    "genre",
+    "skip"
+   ],
+   "name": "Popular"
+  },
+  {
+   "type": "series",
+   "id": "top",
+   "genres": [
+    "Action",
+    "Adventure",
+    "Animation",
+    "Biography",
+    "Comedy",
+    "Crime",
+    "Documentary",
+    "Drama",
+    "Family",
+    "Fantasy",
+    "History",
+    "Horror",
+    "Mystery",
+    "Romance",
+    "Sci-Fi",
+    "Sport",
+    "Thriller",
+    "War",
+    "Western",
+    "Reality-TV",
+    "Talk-Show",
+    "Game-Show"
+   ],
+   "extra": [
+    {
+     "name": "genre",
+     "options": [
+      "Action",
+      "Adventure",
+      "Animation",
+      "Biography",
+      "Comedy",
+      "Crime",
+      "Documentary",
+      "Drama",
+      "Family",
+      "Fantasy",
+      "History",
+      "Horror",
+      "Mystery",
+      "Romance",
+      "Sci-Fi",
+      "Sport",
+      "Thriller",
+      "War",
+      "Western",
+      "Reality-TV",
+      "Talk-Show",
+      "Game-Show"
+     ]
+    },
+    {
+     "name": "search"
+    },
+    {
+     "name": "skip"
+    }
+   ],
+   "extraSupported": [
+    "search",
+    "genre",
+    "skip"
+   ],
+   "name": "Popular"
+  }
+ ],
+ "behaviorHints": {
+  "newEpisodeNotifications": true
+ }
+}

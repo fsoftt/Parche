@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:Parche.App.Localization"
+             xmlns:vm="clr-namespace:Parche.App.ViewModels"
+             xmlns:m="clr-namespace:Parche.Core.Models;assembly=Parche.Core"
+             xmlns:controls="clr-namespace:Parche.App.Controls"
+             x:Class="Parche.App.Views.CategoriesPage"
+             x:DataType="vm:CategoriesViewModel">
+  <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="{OnIdiom Default='16,40,16,0', TV='48,36,48,0'}" RowSpacing="12">
+    <Label Text="{l:Translate Categories_Title}" Style="{StaticResource Display}" />
+
+    <!-- Películas / Series -->
+    <HorizontalStackLayout Grid.Row="1" Spacing="8">
+      <controls:Chip Text="{l:Translate Common_Movies}" IsSelected="{Binding IsMovies}"
+                     Command="{Binding SetTypeCommand}" CommandParameter="movie" />
+      <controls:Chip Text="{l:Translate Common_Series}" IsSelected="{Binding IsSeries}"
+                     Command="{Binding SetTypeCommand}" CommandParameter="series" />
+    </HorizontalStackLayout>
+
+    <!-- Géneros -->
+    <ScrollView Grid.Row="2" Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+      <HorizontalStackLayout Spacing="8" Padding="0,4" BindableLayout.ItemsSource="{Binding Genres}">
+        <BindableLayout.ItemTemplate>
+          <DataTemplate x:DataType="vm:ChipOption">
+            <controls:Chip Text="{Binding Label}" IsSelected="{Binding IsSelected}"
+                           Command="{Binding SelectGenreCommand, Source={RelativeSource AncestorType={x:Type vm:CategoriesViewModel}}, x:DataType=vm:CategoriesViewModel}"
+                           CommandParameter="{Binding .}" />
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
+      </HorizontalStackLayout>
+    </ScrollView>
+
+    <CollectionView Grid.Row="3" ItemsSource="{Binding Items}" SelectionMode="None"
+                    RemainingItemsThreshold="8" RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
+      <CollectionView.ItemsLayout>
+        <GridItemsLayout x:Name="Grid" Orientation="Vertical" Span="{OnIdiom Default=3, TV=6}"
+                         VerticalItemSpacing="{OnIdiom Default=10, TV=20}" HorizontalItemSpacing="{OnIdiom Default=8, TV=20}" />
+      </CollectionView.ItemsLayout>
+      <CollectionView.ItemTemplate>
+        <DataTemplate x:DataType="m:MediaItem">
+          <controls:TvCard HeightRequest="{OnIdiom Default=158, TV=230}" Margin="{OnIdiom Default=0, TV=6}"
+                           Command="{Binding OpenCommand, Source={RelativeSource AncestorType={x:Type vm:CategoriesViewModel}}, x:DataType=vm:CategoriesViewModel}"
+                           CommandParameter="{Binding .}">
+            <Grid>
+              <Label Text="{Binding Title}" Style="{StaticResource Muted}" Margin="8" MaxLines="4"
+                     VerticalOptions="Center" HorizontalTextAlignment="Center" />
+              <Image Source="{Binding Poster}" Aspect="AspectFill" />
+            </Grid>
+          </controls:TvCard>
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+      <CollectionView.Footer>
+        <ActivityIndicator IsRunning="{Binding IsLoadingMore}" IsVisible="{Binding IsLoadingMore}" HeightRequest="40" Margin="0,12" />
+      </CollectionView.Footer>
+      <CollectionView.EmptyView>
+        <VerticalStackLayout Padding="24" Spacing="10">
+          <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" HorizontalOptions="Start" />
+          <Label Text="{l:Translate Categories_Empty}" Style="{StaticResource Muted}" IsVisible="{Binding IsEmpty}" />
+          <Label Text="{Binding Error}" TextColor="{StaticResource Accent}" IsVisible="{Binding HasError}" />
+          <Button Text="{l:Translate Common_Retry}" Command="{Binding RetryCommand}" IsVisible="{Binding HasError}" HorizontalOptions="Start" />
+        </VerticalStackLayout>
+      </CollectionView.EmptyView>
+    </CollectionView>
+  </Grid>
+</ContentPage>

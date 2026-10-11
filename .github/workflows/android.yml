@@ -1,0 +1,71 @@
+name: Android APK
+
+on:
+  push:
+    branches: [release]
+  workflow_dispatch:
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    env:
+      # Only a flag here: the token itself reaches the one step that needs it.
+      HAS_DISPATCH: ${{ secrets.DISPATCH_TOKEN != '' && secrets.DISPATCH_REPO != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: microsoft
+          java-version: 21
+
+      - name: Install MAUI Android workload
+        run: dotnet workload install maui-android
+
+      - name: Install Android dependencies
+        run: >
+          dotnet build src/Parche.App/Parche.App.csproj -t:InstallAndroidDependencies -f net10.0-android
+          -p:AndroidSdkDirectory="$ANDROID_HOME" -p:AcceptAndroidSDKLicenses=True
+
+      - name: Publish APK (phone + Android TV)
+        run: >
+          dotnet publish src/Parche.App/Parche.App.csproj -f net10.0-android -c Release
+          -p:AndroidSdkDirectory="$ANDROID_HOME" -p:AndroidPackageFormat=apk
+          -o artifacts/android
+
+      - name: Verify APK is signed with the committed debug keystore
+        run: |
+          KEYSTORE_FINGERPRINT=$(keytool -list -v -keystore src/Parche.App/debug.keystore -storepass android -alias androiddebugkey \
+            | grep 'SHA256:' | head -1 | sed 's/.*SHA256: //')
+          APK_FINGERPRINT=$(keytool -printcert -jarfile artifacts/android/*-Signed.apk \
+            | grep 'SHA256:' | head -1 | sed 's/.*SHA256: //')
+          echo "debug.keystore fingerprint: $KEYSTORE_FINGERPRINT"
+          echo "Built APK fingerprint:      $APK_FINGERPRINT"
+          if [ "$KEYSTORE_FINGERPRINT" != "$APK_FINGERPRINT" ]; then
+            echo "::error::APK was not signed with src/Parche.App/debug.keystore."
+            exit 1
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: parche-android-apk
+          path: artifacts/android/*-Signed.apk
+          if-no-files-found: error
+
+      # Lets a downstream repository (e.g. a build that adds external plugins) rebuild on every
+      # release. Configured with the DISPATCH_TOKEN and DISPATCH_REPO secrets; skipped without them.
+      - name: Notify downstream builds
+        if: env.HAS_DISPATCH == 'true'
+        env:
+          DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+          DISPATCH_REPO: ${{ secrets.DISPATCH_REPO }}
+        run: >
+          curl -fsS -X POST "https://api.github.com/repos/$DISPATCH_REPO/dispatches"
+          -H "Authorization: Bearer $DISPATCH_TOKEN" -H "Accept: application/vnd.github+json"
+          -d "{\"event_type\":\"parche-release\",\"client_payload\":{\"sha\":\"$GITHUB_SHA\"}}"

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+  <!-- Paleta oscura, alto contraste y acentos neón. -->
+  <Color x:Key="Bg">#0B0B14</Color>
+  <Color x:Key="Surface">#151522</Color>
+  <Color x:Key="Surface2">#1E1E2E</Color>
+  <Color x:Key="Stroke">#2A2A3C</Color>
+  <Color x:Key="Text">#F5F5FA</Color>
+  <Color x:Key="TextMuted">#9CA3AF</Color>
+  <Color x:Key="TextDim">#6B7280</Color>
+  <Color x:Key="Accent">#EC4899</Color>
+  <Color x:Key="Accent2">#8B5CF6</Color>
+  <Color x:Key="Glass">#990B0B14</Color>
+  <Color x:Key="FocusRing">#FFFFFF</Color>
+  <Color x:Key="Highlight">#22D3EE</Color>
+  <Color x:Key="Success">#34D399</Color>
+
+  <!-- Sistema de diseño de Wired: violeta → rosa, con neón cian. -->
+  <LinearGradientBrush x:Key="AccentGradient" StartPoint="0,0" EndPoint="1,1">
+    <GradientStop Color="#8B5CF6" Offset="0" />
+    <GradientStop Color="#EC4899" Offset="1" />
+  </LinearGradientBrush>
+  <LinearGradientBrush x:Key="NeonGradient" StartPoint="0,0" EndPoint="1,0">
+    <GradientStop Color="#8B5CF6" Offset="0" />
+    <GradientStop Color="#EC4899" Offset="0.6" />
+    <GradientStop Color="#22D3EE" Offset="1" />
+  </LinearGradientBrush>
+  <RadialGradientBrush x:Key="GlowBrush" Center="0.5,0.5" Radius="0.5">
+    <GradientStop Color="#668B5CF6" Offset="0" />
+    <GradientStop Color="#00EC4899" Offset="1" />
+  </RadialGradientBrush>
+  <SolidColorBrush x:Key="SurfaceBrush" Color="#151522" />
+  <SolidColorBrush x:Key="Surface2Brush" Color="#1E1E2E" />
+
+  <!-- Degradado inferior del banner: funde la imagen con el fondo. -->
+  <LinearGradientBrush x:Key="HeroFade" StartPoint="0,0" EndPoint="0,1">
+    <GradientStop Color="#660B0B14" Offset="0" />
+    <GradientStop Color="#000B0B14" Offset="0.25" />
+    <GradientStop Color="#990B0B14" Offset="0.7" />
+    <GradientStop Color="#FF0B0B14" Offset="1" />
+  </LinearGradientBrush>
+
+  <!-- Degradado lateral para TV (texto a la izquierda sobre la imagen). -->
+  <LinearGradientBrush x:Key="HeroSideFade" StartPoint="0,0" EndPoint="1,0">
+    <GradientStop Color="#FF0B0B14" Offset="0" />
+    <GradientStop Color="#CC0B0B14" Offset="0.35" />
+    <GradientStop Color="#000B0B14" Offset="0.75" />
+  </LinearGradientBrush>
+
+  <LinearGradientBrush x:Key="TopBarFade" StartPoint="0,0" EndPoint="0,1">
+    <GradientStop Color="#E60B0B14" Offset="0" />
+    <GradientStop Color="#000B0B14" Offset="1" />
+  </LinearGradientBrush>
+</ResourceDictionary>
